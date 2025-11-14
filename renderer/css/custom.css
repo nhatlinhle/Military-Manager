@@ -1,0 +1,59 @@
+body {
+  font-family: cursive;
+}
+
+body.auth-page {
+  background-image: url("../img/back-tank.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.logo-top {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.logo-top img {
+  height: 100px;
+  width: 100px;
+}
+
+.login-box-body {
+  background: rgba(75, 83, 32, 0.8);
+  min-width: 500px;
+}
+
+.register-box-body {
+  background: rgba(75, 83, 32, 0.8);
+  width: 700px;
+}
+
+.layout-page {
+  background-image: url("../img/background-ran-ri.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+
+.hover-zoom {
+  transition: transform 0.2s ease-in-out;
+}
+
+.hover-zoom:hover {
+  transform: scale(1.1);
+}

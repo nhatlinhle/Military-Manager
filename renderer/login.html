@@ -1,83 +1,65 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <title>Login</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Đăng nhập</title>
     <!-- Tell the browser to be responsive to screen width -->
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-          name="viewport"/>
+    <meta
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+      name="viewport"
+    />
     <!-- Bootstrap 3.3.7 -->
-    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="./css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/font-awesome.min.css" />
     <!-- Theme style -->
-    <link rel="stylesheet" href="./css/AdminLTE.min.css">
+    <link rel="stylesheet" href="./css/AdminLTE.min.css" />
 
-    <style>
-        body.login-page {
-            background-image: url("./img/back-tank.jpg");
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-        }
+    <link rel="stylesheet" href="./css/custom.css" />
 
-        .login-logo img{
-            height: 80px;
-            width: 80px;
-        }
-
-        .logo-top {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .logo-top img {
-            height: 100px;
-            width: 100px;
-        }
-
-        .login-box-body {
-            background: rgba(75, 83, 32, 0.8);
-        }
-    </style>
-</head>
-<body class="hold-transition login-page">
+  </head>
+  <body class="auth-page">
     <div class="logo-top">
-        <img src="./img/logo-quan-doan-34.png" alt="">
+      <img src="./img/logo-quan-doan-34.png" alt="" />
     </div>
 
-<div class="login-box">
-    <div class="d-block" style="padding: 80px;"></div>
-    <!-- <div>
-        <div class="callout callout-danger">
-            <p>Username or password invalid!</p>
-        </div>
-    </div> -->
-    <div class="login-box-body">
+    <div class="d-flex flex-column align-items-center justify-content-center">
+      <!-- <div>
+            <div class="callout callout-danger">
+                <p>Username or password invalid!</p>
+            </div>
+        </div> -->
+      <div class="login-box-body">
         <!-- <h3 class="login-box-msg text-light">Đăng nhập</h3> -->
         <div class="d-flex justify-content-center">
-            <img src="./img/logo-lu-doan-son-lam.png" height="90" width="90" alt="">
+          <img
+            src="./img/logo-lu-doan-son-lam.png"
+            height="90"
+            width="90"
+            alt=""
+          />
         </div>
         <form action="" method="post">
-            <div class="form-group has-feedback">
-                <label class="text-light" for="">Tên đăng nhập</label>
-                <input type="text" class="form-control" name="email"/>
-            </div>
-            <div class="form-group has-feedback">
-                <label class="text-light" for="">Mật khẩu</label>
-                <input type="password" class="form-control" name="password"/>
-            </div>
-            <div class="d-flex flex-column justify-content-center align-items-center align-items-center">
-                <button type="submit" class="btn btn-success btn-flat mb-3">Đăng nhập</button>
-                <a href="">Đăng ký</a>
-            </div>
+          <div class="form-group has-feedback">
+            <label class="text-light" for="">Tên đăng nhập</label>
+            <input type="text" class="form-control" name="username" />
+          </div>
+          <div class="form-group has-feedback">
+            <label class="text-light" for="">Mật khẩu</label>
+            <input type="password" class="form-control" name="password" />
+          </div>
+          <div
+            class="d-flex flex-column justify-content-center align-items-center align-items-center mt-4"
+          >
+            <button type="submit" class="btn btn-success btn-flat mb-3 px-5 py-2">
+              Đăng nhập
+            </button>
+            <a href="register.html">Đăng ký</a>
+            <a href="index.html">Home</a>
+          </div>
         </form>
+      </div>
     </div>
-</div>
-</body>
+  </body>
 </html>

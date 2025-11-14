@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Đăng ký</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+      name="viewport"
+    />
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="./css/font-awesome.min.css" />
+    <!-- Theme style -->
+    <link rel="stylesheet" href="./css/AdminLTE.min.css" />
+
+    <link rel="stylesheet" href="./css/custom.css" />
+  </head>
+
+  <body class="auth-page">
+    <div class="logo-top">
+      <img src="./img/logo-quan-doan-34.png" alt />
+    </div>
+
+    <div class="d-flex flex-column align-items-center justify-content-center">
+      <!-- <div>
+            <div class="callout callout-danger">
+                <p>Username or password invalid!</p>
+            </div>
+        </div> -->
+      <div class="register-box-body">
+        <div class="d-flex justify-content-center mb-3">
+          <img
+            src="./img/logo-lu-doan-son-lam.png"
+            height="90"
+            width="90"
+            alt
+          />
+        </div>
+        <form action method="post">
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group has-feedback">
+                <label class="text-light" for>Họ và tên</label>
+                <input type="text" class="form-control" name="fullname" />
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group has-feedback">
+                <label class="text-light" for>Tên đăng nhập</label>
+                <input type="text" class="form-control" name="username" />
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group has-feedback">
+                <label class="text-light" for>Mã quân nhân</label>
+                <input type="text" class="form-control" name="code" />
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group has-feedback">
+                <label class="text-light" for>Đơn vị công tác</label>
+                <select name="work_unit" id="" class="form-control">
+                    <option value="">Quân đoàn 123</option>
+                    <option value="">Quân đoàn 357</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group has-feedback">
+                <label class="text-light" for>Cấp bậc</label>
+                <select name="rank" id="" class="form-control">
+                    <option value="">Binh nhì</option>
+                    <option value="">Binh nhất</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group has-feedback">
+                <label class="text-light" for>Chức vụ</label>
+                <select name="position" id="" class="form-control">
+                    <option value="">Thủ trưởng</option>
+                    <option value="">Đại đội trưởng</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-group has-feedback">
+                <label class="text-light" for>Ngày sinh</label>
+                <input type="date" class="form-control" name="birthday" />
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-group has-feedback">
+                <label class="text-light" for>Mật khẩu</label>
+                <input type="password" class="form-control" name="password" />
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-group has-feedback">
+                <label class="text-light" for>Xác nhận mật khẩu</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  name="confirm_password"
+                />
+              </div>
+            </div>
+            <div class="col-12">
+              <div
+                class="d-flex flex-column justify-content-center align-items-center align-items-center mt-3"
+              >
+                <button type="submit" class="btn btn-success btn-flat mb-3 px-5 py-2">
+                  Đăng ký
+                </button>
+                <a href="login.html">Quay lại đăng nhập</a>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
