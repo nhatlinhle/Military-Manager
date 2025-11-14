@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Danh sách quân nhân</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+      name="viewport"
+    />
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="./css/font-awesome.min.css" />
+    <!-- Theme style -->
+    <link rel="stylesheet" href="./css/AdminLTE.min.css" />
+
+    <link rel="stylesheet" href="./css/custom.css" />
+  </head>
+  <body class="layout-page">
+    <div class="container" style="background: #fff">
+      <div class="row p-4">
+        <div class="col-12 mb-5">
+          <div
+            class="d-flex flex-row justify-content-between align-items-center"
+          >
+            <div class="d-flex justify-content-end">
+              <a class="btn btn-success btn-flat"> Thêm mới </a>
+            </div>
+            <div
+              class="d-flex flex-row align-items-center"
+              style="min-width: 400px"
+            >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Tìm kiếm quân nhân"
+              />
+              <button class="btn btn-success btn-flat">
+                <i class="fa fa-search"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 mb-3">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Số hiệu quân nhân</th>
+                <th scope="col">Họ tên</th>
+                <th scope="col">Cấp bậc</th>
+                <th scope="col">Quê quán</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>01111</td>
+                <td>Linh Uchiha</td>
+                <td>Binh bét</td>
+                <td>Làng Rách</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-12 p-3">
+          <div class="d-flex flex-row justify-content-end" style="gap: 10px">
+            <a class="btn btn-outline-success btn-flat"> Xuất file json </a>
+            <a class="btn btn-outline-success btn-flat"> Nhập file json </a>
+            <a class="btn btn-outline-success btn-flat"> Xuất file Excel </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
