@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Danh sách quân nhân</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+      name="viewport"
+    />
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="./css/font-awesome.min.css" />
+    <!-- Theme style -->
+    <link rel="stylesheet" href="./css/AdminLTE.min.css" />
+
+    <link rel="stylesheet" href="./css/custom.css" />
+  </head>
+  <body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+        <header class="main-header">
+            <div>
+                <!-- Logo -->
+                <a class="logo" href="/admin">
+                    <!-- logo for regular state and mobile devices -->
+                    <span class="logo-lg">Quân nhân</span>
+                </a>
+                <!-- Header Navbar: style can be found in header.less -->
+                <nav class="navbar navbar-static-top">
+                    <!-- Sidebar toggle button-->
+                    <a href=""></a>
+
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                            <!-- User Account: style can be found in dropdown.less -->
+                            <li class="dropdown user user-menu">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <img alt="User Image" class="user-image" src="./img/logo-lu-doan-son-lam.png" />
+                                    <span class="hidden-xs">Uzumaki Naruto</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <!-- User image -->
+                                    <li class="user-header">
+                                        <img alt="User Image" class="img-circle" src="./img/logo-lu-doan-son-lam.png" />
+
+                                        <p>
+                                            Uzumaki Naruto
+                                        </p>
+                                    </li>
+                                    <!-- Menu Footer-->
+                                    <li class="user-footer">
+                                        <div class="pull-left">
+                                            <a class="btn btn-default btn-flat" href="/admin/profile">Profile</a>
+                                        </div>
+                                        <div class="pull-right">
+                                            <form method="post" action="/admin/logout">
+                                                <input class="btn btn-default btn-flat" type="submit" value="Logout" />
+                                            </form>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+
+        </header>
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="main-sidebar">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+                <!-- Sidebar Menu -->
+                <ul class="sidebar-menu" data-widget="tree">
+                    <!-- <li class="header"></li> -->
+                    <li class="active"><a href="list-user.html"><i class="fa fa-dashboard"></i> <span>Quân nhân</span></a></li>
+                    
+                    <li class="active"><a href="unit.html"><i class="fa fa-dashboard"></i> <span>Đơn vị</span></a></li>
+                </ul>
+                <!-- /.sidebar-menu -->
+            </section>
+            <!-- /.sidebar -->
+
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <section class="content-header">
+                <h1>Đơn vị</h1>
+                <ol class="breadcrumb" style="gap: 10px;">
+                    <li><a href="/admin/brand/list">Đơn vị</a></li>
+                    <li class="active"> Danh sách</li>
+                </ol>
+            </section>
+
+            <section class="content">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="box box-primary p-2">
+                            <div class="box-header">
+                                <h3 class="box-title">Danh sách</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <form id="form-brand-list" action="/admin/brand/list" method="post">
+                                    <div class="dataTables_wrapper">
+                                        <div class="row mb-4">
+                                            <div class="col-sm-8">
+                                                <div class="d-flex flex-row gap-2">
+                                                    <div class="form-group d-block mb-0">
+                                                        <select name="action" id="action-option-list" class="form-control d-block">
+                                                            <option value="">-- Chọn hành động --</option>
+                                                            <option value="active">Hoạt động</option>
+                                                            <option value="delete">Thùng rác</option>
+                                                        </select>
+                                                    </div>
+                                                    <button type="button" class="btn btn-success btn-flat">
+                                                        Áp dụng
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="d-flex flex-row gap-2 justify-content-end">
+                                                    <a href="/admin/brand/create" class="btn btn-primary btn-flat">Thêm mới</a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <table class="table table-bordered table-hover dataTable">
+                                                    <thead>
+                                                        <tr>
+                                                            <th><input type="checkbox" name="check-all-item" id="check-all-item"></th>
+                                                            <th>Tên</th>
+                                                            <th>Slug</th>
+                                                            <th>Logo</th>
+                                                            <th>Trạng thái</th>
+                                                            <th>Hành động</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <!-- Brand sample 1 -->
+                                                        <tr role="row" class="odd">
+                                                            <td><input type="checkbox" class="check-item" name="items" value="1"></td>
+                                                            <td>Brand A</td>
+                                                            <td>brand-a</td>
+                                                            <td><img src="/dist/img/brand-a.png" style="height: 40px; width: 40px;" alt=""></td>
+                                                            <td><span class="text-green">Đang hoạt động</span></td>
+                                                            <td>
+                                                                <a href="/admin/brand/edit/1" class="btn btn-sm btn-warning btn-flat">Sửa</a>
+                                                                <button type="button" class="btn btn-sm btn-danger confirm-action-form btn-flat">Thùng rác</button>
+                                                            </td>
+                                                        </tr>
+                                                        <!-- Brand sample 2 -->
+                                                        <tr role="row" class="odd">
+                                                            <td><input type="checkbox" class="check-item" name="items" value="2"></td>
+                                                            <td>Brand B</td>
+                                                            <td>brand-b</td>
+                                                            <td><img src="/dist/img/brand-b.png" style="height: 40px; width: 40px;" alt=""></td>
+                                                            <td><span class="text-red">Ngưng hoạt động</span></td>
+                                                            <td>
+                                                                <a href="/admin/brand/edit/2" class="btn btn-sm btn-warning">Sửa</a>
+                                                                <button type="button" class="btn btn-sm btn-danger confirm-action-form">Thùng rác</button>
+                                                            </td>
+                                                        </tr>
+                                                        <!-- Nếu không có dữ liệu -->
+                                                        <!-- <tr role="row" class="odd">
+                                                            <td colspan="6"><h5>Không có dữ liệu.</h5></td>
+                                                        </tr> -->
+                                                    </tbody>
+                                                    <tfoot></tfoot>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                        <!-- Pagination sample (tĩnh) -->
+                                        <div class="dataTables_paginate paging_simple_numbers">
+                                            <ul class="pagination">
+                                                <!-- Previous -->
+                                                <li class="paginate_button disabled">
+                                                    <a href="#">Previous</a>
+                                                </li>
+
+                                                <!-- Page numbers -->
+                                                <li class="paginate_button active">
+                                                    <a href="#">1</a>
+                                                </li>
+                                                <li class="paginate_button">
+                                                    <a href="#">2</a>
+                                                </li>
+                                                <li class="paginate_button">
+                                                    <a href="#">3</a>
+                                                </li>
+                                                <li class="paginate_button">
+                                                    <a href="#">4</a>
+                                                </li>
+                                                <li class="paginate_button">
+                                                    <a href="#">5</a>
+                                                </li>
+
+                                                <!-- Next -->
+                                                <li class="paginate_button">
+                                                    <a href="#">Next</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                        <!-- /.box -->
+                    </div>
+                </div>
+            </section>
+
+            <section class="content">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="box box-primary p-2">
+                            <div class="box-header">
+                                <h3 class="box-title">Thêm mới</h3>
+                            </div>
+                            <!-- /.box-header -->
+
+                            <form action="/admin/brand/create" method="post" enctype="multipart/form-data">
+                                <div class="box-body">
+                                    <div class="row">
+                                        <!-- Name -->
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="control-label" for="name">Tên đơn vị</label>
+                                                <input type="text" class="form-control convert-to-slug" id="name" name="name" placeholder="Nhập tên">
+                                                <span class="help-block" id="name-error"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <!-- Logo URL -->
+                                        <div class="col-sm-6 mb-5">
+                                            <div class="form-group">
+                                                <label class="control-label" for="logoFile">Hình ảnh</label>
+                                                <input type="file" class="form-control" id="single-image-file" name="logoFile">
+                                                <span class="help-block" id="logoFile-error"></span>
+                                            </div>
+                                            
+                                            <div class="content-image-preview">
+                                                <img src="/customs/backend/image/image-preview.jpg" id="single-image-preview" alt="Image preview" class="single-image-preview">
+                                            </div>
+                                        </div>
+
+                                        <!-- Description -->
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Mô tả</label>
+                                                <textarea class="form-control" name="description" rows="3" placeholder="Enter ..."></textarea>
+                                                <span class="help-block" id="description-error"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- /.box-body -->
+                        </div>
+                        <!-- /.box -->
+                    </div>
+                </div>
+            </section>
+
+        </div>
+        <!-- /.content-wrapper -->
+        <footer class="main-footer">
+            <strong></strong>
+        </footer>
+
+        <div class="modal modal-warning fade" id="confirmModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Xác nhận</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p id="modal-delete-msg">Bạn chắc chắn muốn chuyển vào thùng rác?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Huỷ</button>
+                        <button type="button" class="btn btn-outline" id="modal-btn-confirm">Đồng ý</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
