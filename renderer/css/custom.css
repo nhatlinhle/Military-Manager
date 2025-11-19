@@ -1,16 +1,11 @@
-body {
-  font-family: cursive;
-}
-
 body.auth-page {
   background-image: url("../img/back-tank.jpg");
-  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: 100vh;
 }
 
 .logo-top {
@@ -413,4 +408,16 @@ body.auth-page {
 /* Remove border-radius to make square */
 .pagination li a {
     border-radius: 0;
+}
+
+.icon-setting-unit {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.icon-setting-unit:hover {
+    transform: scale(1.1);
 }

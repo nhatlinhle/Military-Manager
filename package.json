@@ -23,5 +23,9 @@
     "electron": "^39.1.2",
     "electron-builder": "^26.0.12",
     "electron-reload": "^2.0.0-alpha.1"
+  },
+  "dependencies": {
+    "jquery": "^3.7.1",
+    "uuid": "^13.0.0"
   }
 }
