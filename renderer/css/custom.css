@@ -1,5 +1,6 @@
 body.auth-page {
   background-image: url("../img/back-tank.jpg");
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   display: flex;
@@ -420,4 +421,8 @@ body.auth-page {
 
 .icon-setting-unit:hover {
     transform: scale(1.1);
+}
+
+.color-error-validate {
+    color: #ff838f !important;
 }

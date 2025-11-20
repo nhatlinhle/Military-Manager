@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="./css/AdminLTE.min.css" />
 
     <link rel="stylesheet" href="./css/custom.css" />
+
   </head>
 
   <body class="auth-page">
@@ -39,63 +40,20 @@
             alt
           />
         </div>
-        <form action method="post">
+        <form action method="post" id="register-form">
           <div class="row">
-            <div class="col-6">
-              <div class="form-group has-feedback">
-                <label class="text-light" for>Họ và tên</label>
-                <input type="text" class="form-control" name="fullname" />
-              </div>
-            </div>
-            <div class="col-6">
+            <div class="col-12">
               <div class="form-group has-feedback">
                 <label class="text-light" for>Tên đăng nhập</label>
                 <input type="text" class="form-control" name="username" />
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="form-group has-feedback">
-                <label class="text-light" for>Mã quân nhân</label>
-                <input type="text" class="form-control" name="code" />
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="form-group has-feedback">
-                <label class="text-light" for>Đơn vị công tác</label>
-                <select name="work_unit" id="" class="form-control">
-                    <option value="">Quân đoàn 123</option>
-                    <option value="">Quân đoàn 357</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="form-group has-feedback">
-                <label class="text-light" for>Cấp bậc</label>
-                <select name="rank" id="" class="form-control">
-                    <option value="">Binh nhì</option>
-                    <option value="">Binh nhất</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="form-group has-feedback">
-                <label class="text-light" for>Chức vụ</label>
-                <select name="position" id="" class="form-control">
-                    <option value="">Thủ trưởng</option>
-                    <option value="">Đại đội trưởng</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-12">
-              <div class="form-group has-feedback">
-                <label class="text-light" for>Ngày sinh</label>
-                <input type="date" class="form-control" name="birthday" />
+                <span class="help-block" id="username-error"></span>
               </div>
             </div>
             <div class="col-12">
               <div class="form-group has-feedback">
                 <label class="text-light" for>Mật khẩu</label>
                 <input type="password" class="form-control" name="password" />
+                <span class="help-block" id="password-error"></span>
               </div>
             </div>
             <div class="col-12">
@@ -106,6 +64,7 @@
                   class="form-control"
                   name="confirm_password"
                 />
+                <span class="help-block" id="confirm_password-error"></span>
               </div>
             </div>
             <div class="col-12">
@@ -122,5 +81,9 @@
         </form>
       </div>
     </div>
+
+    <script src="./js/common.js"></script>
+    <script src="./renderer.js"></script>
+    <script src="./js/register.js"></script>
   </body>
 </html>
