@@ -65,3 +65,35 @@ function updateData(fileName, id, data) {
   const newData = dataList.map(item => item.id === id ? {...item, ...data} : item);
   saveData(fileName, newData);
 }
+
+function showError(field, message) {
+    const $err = $(`#${field}-error`);
+    const $inputErr = $(`.${field}-input-error`);
+    $err.text(message).addClass("color-error-validate");
+    $inputErr.addClass("is-invalid");
+  }
+
+  function clearError(field) {
+    const $err = $(`#${field}-error`);
+    const $inputErr = $(`.${field}-input-error`);
+    $err.text("").removeClass("color-error-validate");
+    $inputErr.removeClass("is-invalid");
+  }
+
+  function validateField(field, value, ruleSet) {
+    clearError(field);
+
+    if (ruleSet.required && !value) {
+      showError(field, ruleSet.required);
+      return false;
+    }
+    if (ruleSet.min && value.length < ruleSet.min.value) {
+      showError(field, ruleSet.min.message);
+      return false;
+    }
+    if (ruleSet.max && value.length > ruleSet.max.value) {
+      showError(field, ruleSet.max.message);
+      return false;
+    }
+    return true;
+  }

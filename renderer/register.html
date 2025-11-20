@@ -26,11 +26,11 @@
     </div>
 
     <div class="d-flex flex-column align-items-center justify-content-center">
-      <!-- <div>
-            <div class="callout callout-danger">
-                <p>Username or password invalid!</p>
+        <div id="alert-register" class="d-none" style="width: 100%;">
+            <div class="callout callout-success rounded-0">
+                <p>Đăng ký thành công !!! Vui lòng đến trang đăng nhập</p>
             </div>
-        </div> -->
+        </div>
       <div class="register-box-body">
         <div class="d-flex justify-content-center mb-3">
           <img
@@ -40,19 +40,19 @@
             alt
           />
         </div>
-        <form action method="post" id="register-form">
+        <form action="javascript:void(0)" method="post" id="register-form">
           <div class="row">
             <div class="col-12">
               <div class="form-group has-feedback">
                 <label class="text-light" for>Tên đăng nhập</label>
-                <input type="text" class="form-control" name="username" />
+                <input type="text" class="form-control username-input-error" name="username" />
                 <span class="help-block" id="username-error"></span>
               </div>
             </div>
             <div class="col-12">
               <div class="form-group has-feedback">
                 <label class="text-light" for>Mật khẩu</label>
-                <input type="password" class="form-control" name="password" />
+                <input type="password" class="form-control password-input-error" name="password" />
                 <span class="help-block" id="password-error"></span>
               </div>
             </div>
@@ -61,7 +61,7 @@
                 <label class="text-light" for>Xác nhận mật khẩu</label>
                 <input
                   type="password"
-                  class="form-control"
+                  class="form-control confirm_password-input-error"
                   name="confirm_password"
                 />
                 <span class="help-block" id="confirm_password-error"></span>
