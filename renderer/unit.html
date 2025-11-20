@@ -17,13 +17,15 @@
     <link rel="stylesheet" href="./css/AdminLTE.min.css" />
 
     <link rel="stylesheet" href="./css/custom.css" />
+
+    <link rel="stylesheet" href="./css/unit.css" />
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
         <!-- Content Wrapper. Contains page content -->
         <div>
             <section class="content-header">
-                <h1>Đơn vị</h1>
+                <h1 class="d-flex align-items-center gap-2"><img src="./img/Logo_QĐNDVN.png" width="35" height="35" alt=""> Đơn vị</h1>
                 <ol class="breadcrumb" style="gap: 10px;">
                     <li><a href="/admin/brand/list">Quản lý đơn vị</a></li>
                     <li class="active"> Danh sách</li>
@@ -34,9 +36,6 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="box box-primary p-2">
-                            <div class="box-header">
-                                <h3 class="box-title">Danh sách</h3>
-                            </div>
                             <!-- /.box-header -->
                             <div class="box-body">
                                 <form id="form-brand-list" action="/admin/brand/list" method="post">
@@ -94,8 +93,34 @@
                                         <!-- Logo URL -->
                                         <div class="col-sm-6 mb-5">
                                             <div class="form-group">
-                                                <label class="control-label" for="logoFile">Hình ảnh</label>
-                                                <input type="file" class="form-control" id="single-image-file" name="logo">
+                                                <label class="control-label" for="logoFile">Logo</label>
+                                                <!-- <input type="file" class="form-control" id="single-image-file" name="logo"> -->
+                                                <div class="file-input">
+                                                    <input
+                                                        type="file"
+                                                        name="logo"
+                                                        id="single-image-file"
+                                                        class="file-input__input"
+                                                    />
+                                                    <label class="file-input__label" for="single-image-file">
+                                                        <svg
+                                                            aria-hidden="true"
+                                                            focusable="false"
+                                                            data-prefix="fas"
+                                                            data-icon="upload"
+                                                            class="svg-inline--fa fa-upload fa-w-16"
+                                                            role="img"
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            viewBox="0 0 512 512"
+                                                        >
+                                                            <path
+                                                                fill="currentColor"
+                                                                d="M296 384h-80c-13.3 0-24-10.7-24-24V192h-87.7c-17.8 0-26.7-21.5-14.1-34.1L242.3 5.7c7.5-7.5 19.8-7.5 27.3 0l152.2 152.2c12.6 12.6 3.7 34.1-14.1 34.1H320v168c0 13.3-10.7 24-24 24zm216-8v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h136v8c0 30.9 25.1 56 56 56h80c30.9 0 56-25.1 56-56v-8h136c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z"
+                                                            ></path>
+                                                        </svg>
+                                                        <span>Tải lên logo</span></label
+                                                    >
+                                                </div>
                                                 <span class="help-block" id="logoFile-error"></span>
                                             </div>
                                             
@@ -104,8 +129,9 @@
                                         </div>
                                     </div>
 
-                                    <div>
+                                    <div class="d-flex justify-content-between">
                                         <button type="submit" id="submit-unit-form" class="btn btn-primary">Lưu</button>
+                                        <a href="login.html" class="btn btn-success btn-flat ms-2">Quay lại đăng nhập</a>
                                     </div>
                                 </div>
                             </form>
@@ -115,11 +141,6 @@
                     </div>
                 </div>
             </section>
-            <div class="row px-4">
-                <div class="col-12">
-                    <a href="login.html" class="btn btn-success btn-flat ms-2">Quay lại</a>
-                </div>
-            </div>
         </div>
     </div>
     <div class="modal fade" id="delete-unit-modal" tabindex="-1" role="dialog" aria-labelledby="delete-unit-modal-label" aria-hidden="true">

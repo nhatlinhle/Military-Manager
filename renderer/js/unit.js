@@ -10,7 +10,7 @@ async function saveDataUnit(formData) {
   const arrayBuffer = await image.arrayBuffer();
   const buffer = Buffer.from(arrayBuffer);
 
-  const imageName = image.name;
+  const imageName = `${uuidv4()}-${image.name}`;
   const imagePathAbs = path.join(imageDir, imageName);
 
   // Save image file
