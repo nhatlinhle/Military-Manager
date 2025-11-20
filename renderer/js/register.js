@@ -17,37 +17,10 @@ $(document).ready(function () {
     }
   };
 
-  function showError(field, message) {
-    const $err = $(`#${field}-error`);
-    $err.text(message).addClass("color-error-validate");
-  }
-
-  function clearError(field) {
-    const $err = $(`#${field}-error`);
-    $err.text("").removeClass("color-error-validate");
-  }
-
-  function validateField(field, value, ruleSet) {
-    clearError(field);
-
-    if (ruleSet.required && !value) {
-      showError(field, ruleSet.required);
-      return false;
-    }
-    if (ruleSet.min && value.length < ruleSet.min.value) {
-      showError(field, ruleSet.min.message);
-      return false;
-    }
-    if (ruleSet.max && value.length > ruleSet.max.value) {
-      showError(field, ruleSet.max.message);
-      return false;
-    }
-    return true;
-  }
-
   $("#register-form").submit(function (e) {
     e.preventDefault();
 
+    const users = readData('user.json');
     const data = Object.fromEntries(new FormData(this).entries());
     let isValid = true;
 
@@ -63,8 +36,24 @@ $(document).ready(function () {
       isValid = false;
     }
 
+    const usernameExists = users.some(u => u.username === data.username);
+
+    if (usernameExists) {
+      showError("username", "Tên đăng nhập đã tồn tại");
+      isValid = false;
+    }
+
     if (!isValid) return;
 
-    console.log(data);
+    saveDataUser(data);
   });
+
+  const saveDataUser = (data) => {
+    saveData('user.json', {
+      id: uuidv4(),
+      username: data.username,
+      password: data.password,
+    });
+    $("#alert-register").removeClass("d-none");
+  }
 });

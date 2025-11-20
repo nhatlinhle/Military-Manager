@@ -1,19 +1,29 @@
-async function handleLogin (formData) {
-    const username = formData.get("username")
-    const password = formData.get("password")
-    if (!username || !password) {
-        $("#alert-login").removeClass("d-none");
-    } else {
-        window.location.href = 'index.html';
-    }
-}
+async function handleLogin(data) {
+  const users = readData('user.json');
 
+  const user = users.find(u => u.username === data.username);
+
+  if (!user) {
+    $("#alert-login").removeClass("d-none");
+    return;
+  }
+
+  if (user.password !== data.password) {
+    $("#alert-login").removeClass("d-none");
+    return;
+  }
+
+  const { password, ...userInfo } = user;
+  localStorage.setItem("current_user", JSON.stringify(userInfo));
+
+  window.location.href = "index.html";
+}
 $(function () {
   $("#alert-login").addClass("d-none");
   $('#login-form').submit(async function (e) {
     e.preventDefault();
-    const formData = new FormData(this);
+    const data = Object.fromEntries(new FormData(this).entries());
 
-    await handleLogin(formData);
+    await handleLogin(data);
   });
 });

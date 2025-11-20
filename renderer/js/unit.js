@@ -31,11 +31,34 @@ function readUnit() {
 }
 
 $(function () {
+  const rules = {
+    name: {
+      required: "Tên đơn vị không được để trống",
+      min: { value: 6, message: "Tên đơn vị phải có ít nhất 6 ký tự" },
+      max: { value: 100, message: "Tên đơn vị không được vượt quá 100 ký tự" },
+    },
+    logo: {
+      required: "Logo không được để trống",
+      min: { value: 8, message: "Mật khẩu phải có ít nhất 8 ký tự" },
+      max: { value: 100, message: "Mật khẩu không được vượt quá 100 ký tự" },
+    },
+  };
+
   $('#unit-form').submit(async function (e) {
     e.preventDefault();
     $('#submit-unit-form').prop('disabled', true);
-    const formData = new FormData(this);
+    const data = Object.fromEntries(new FormData(this).entries());
+    let isValid = true;
 
+    // Validate từng field theo rule
+    for (const field in rules) {
+      const ok = validateField(field, data[field], rules[field]);
+      if (!ok) isValid = false;
+    }
+
+    if (!isValid) return;
+
+    const formData = new FormData(this);
     await saveDataUnit(formData);
 
     window.location.href = 'unit.html';
