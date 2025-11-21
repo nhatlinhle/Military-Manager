@@ -4,7 +4,8 @@ const path = require('path');
 
 // 🔥 Tự reload khi có thay đổi trong thư mục renderer hoặc main
 require('electron-reload')(__dirname, {
-  electron: require(`${__dirname}/node_modules/electron`)
+  electron: require(`${__dirname}/node_modules/electron`),
+  ignored: /renderer[\\/]data[\\/].*/,
 });
 
 function createWindow() {

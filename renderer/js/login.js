@@ -26,4 +26,14 @@ $(function () {
 
     await handleLogin(data);
   });
+
+  const params = new URLSearchParams(window.location.search);
+  if (params.get("alert") === "register-success") {
+    $("#alert-register-success").removeClass("d-none");
+
+    params.delete("alert");
+
+    const newUrl = window.location.origin + window.location.pathname;
+    window.history.replaceState({}, "", newUrl);
+}
 });

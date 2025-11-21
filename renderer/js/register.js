@@ -46,6 +46,9 @@ $(document).ready(function () {
     if (!isValid) return;
 
     saveDataUser(data);
+
+
+    window.location.href = "login.html?alert=register-success";
   });
 
   const saveDataUser = (data) => {
@@ -54,6 +57,5 @@ $(document).ready(function () {
       username: data.username,
       password: data.password,
     });
-    $("#alert-register").removeClass("d-none");
   }
 });
