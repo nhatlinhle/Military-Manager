@@ -8,10 +8,10 @@ $(document).ready(function() {
 
   rows.forEach(row => {
     $('#unit-list').append(`
-        <div class="col-3 mb-3">
+        <div style="background: #ffffff1f; border-radius: 10px;">
             <a href="javascript:void(0)" class="d-flex flex-column align-items-center hover-zoom p-2 unit-item" data-id="${row.id}">
                 <img src="${row.logo}" width="90" height="90" alt="">
-                <span>${row.name}</span>
+                <span class="text-info" style="font-size: 20px;">${row.name}</span>
             </a>
         </div>
     `);
@@ -20,6 +20,6 @@ $(document).ready(function() {
   $(".unit-item").on("click", function() {
     const unitId = $(this).data("id");
     localStorage.setItem("unit-id", unitId) 
-    window.location.href = 'list-user.html';
+    window.location.href = 'list-user.html?unit-id=' + unitId;
   })
 })

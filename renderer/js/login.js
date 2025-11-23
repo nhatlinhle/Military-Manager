@@ -16,7 +16,7 @@ async function handleLogin(data) {
   const { password, ...userInfo } = user;
   localStorage.setItem("current_user", JSON.stringify(userInfo));
 
-  window.location.href = "index.html";
+  window.location.href = "index.html?user-id=" + user.id;
 }
 $(function () {
   $("#alert-login").addClass("d-none");

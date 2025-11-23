@@ -1,86 +1,126 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Danh sách quân nhân</title>
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta
-      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-      name="viewport"
-    />
-    <!-- Bootstrap 3.3.7 -->
-    <link rel="stylesheet" href="./css/bootstrap.min.css" />
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="./css/font-awesome.min.css" />
-    <!-- Theme style -->
-    <link rel="stylesheet" href="./css/AdminLTE.min.css" />
 
-    <link rel="stylesheet" href="./css/custom.css" />
-  </head>
-  <body class="layout-page">
-    <div class="container" style="background: #fff">
-      <div class="row p-4">
-        <div class="col-12 mb-5">
-          <div
-            class="d-flex flex-row justify-content-between align-items-center"
-          >
-            <div class="d-flex justify-content-end">
-              <a class="btn btn-success btn-flat"> Thêm mới </a>
-            </div>
-            <div
-              class="d-flex flex-row align-items-center"
-              style="min-width: 400px"
-            >
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Tìm kiếm quân nhân"
-              />
-              <button class="btn btn-success btn-flat">
-                <i class="fa fa-search"></i>
-              </button>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Danh sách quân nhân</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="./css/bootstrap.min.css" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="./css/font-awesome.min.css" />
+  <!-- Theme style -->
+  <link rel="stylesheet" href="./css/AdminLTE.min.css" />
+
+  <link rel="stylesheet" href="./css/custom.css" />
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+  <div class="wrapper">
+    <div>
+      <section class="content-header">
+        <h1 class="d-flex align-items-center gap-2"><img src="./img/Logo_QĐNDVN.png" width="35" height="35" alt="">Đơn
+          vị: <span id="unit-name"></span></h1>
+        <ol class="breadcrumb" style="gap: 10px;">
+          <li><a href="/admin/brand/list">Quản lý quân nhân</a></li>
+          <li class="active">Danh sách</li>
+        </ol>
+      </section>
+
+      <section class="content">
+        <div class="row">
+          <div class="col-12">
+            <div class="box box-primary p-2">
+              <div class="box-header">
+                <h3 class="box-title">Tìm kiếm</h3>
+              </div>
+
+              <div class="box-body">
+                <form action="">
+                  <div class="row form-group">
+                    <div class="col-6">
+                      <input type="text" class="form-control" id="search-input" placeholder="Nhập tên hoặc mã quân nhân để tìm kiếm">
+                    </div>
+
+                    <div class="col-6">
+                      <select name="rank" id="rank" class="form-control">
+                        <option value="">Chọn cấp bậc</option>
+                        <option value="1">Binh nhất</option>
+                        <option value="2">Binh nhì</option>
+                        <option value="3">Hạ sĩ</option>
+                        <option value="4">Trung sĩ</option>
+                        <option value="5">Thượng sĩ</option>
+                        <option value="6">Thiếu úy</option>
+                        <option value="7">Trung úy</option>
+                        <option value="8">Thượng úy</option>
+                        <option value="9">Đại úy</option>
+                        <option value="10">Thiếu tá</option>
+                        <option value="11">Trung tá</option>
+                        <option value="12">Thượng tá</option>
+                        <option value="13">Đại tá</option>
+                        <option value="14">Thiếu tướng</option>
+                        <option value="15">Trung tướng</option>
+                        <option value="16">Thượng tướng</option>
+                        <option value="17">Đại tướng</option>
+                      </select>
+                    </div>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-12 mb-3">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Số hiệu quân nhân</th>
-                <th scope="col">Họ tên</th>
-                <th scope="col">Cấp bậc</th>
-                <th scope="col">Quê quán</th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>01111</td>
-                <td>Linh Uchiha</td>
-                <td>Binh bét</td>
-                <td>Làng Rách</td>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="col-12 p-3">
-          <div class="d-flex flex-row justify-content-end" style="gap: 10px">
-            <a class="btn btn-outline-success btn-flat"> Xuất file json </a>
-            <a class="btn btn-outline-success btn-flat"> Nhập file json </a>
-            <a class="btn btn-outline-success btn-flat"> Xuất file Excel </a>
-            <a href="unit.html" class="btn btn-outline-success btn-flat"> Trang đơn vị </a>
+      </section>
+
+      <section class="content">
+        <div class="row">
+          <div class="col-12">
+            <div class="box box-primary p-2">
+              <div class="box-header">
+                <h3 class="box-title">Danh sách</h3>
+              </div>
+              <!-- /.box-header -->
+              <div class="box-body">
+                <form id="form-brand-list" action="/admin/brand/list" method="post">
+                  <div class="dataTables_wrapper">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <table class="table table-bordered table-hover dataTable" id="users-table">
+                          <thead>
+                            <tr>
+                              <th>No.</th>
+                              <th>Mã quân nhân</th>
+                              <th>Tên quân nhân</th>
+                              <th>Ngày tháng năm sinh</th>
+                              <th>Cấp bậc</th>
+                              <th>Chức vụ</th>
+                              <th>Hành động</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <!-- Rows will be added dynamically -->
+                          </tbody>
+                          <tfoot></tfoot>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <!-- /.box-body -->
+            </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
-  </body>
+  </div>
+</body>
 
-  <script src="./js/bootstrap.bundle.min.js"></script>
-  <script src="./renderer.js"></script>
-  <script src="./js/common.js"></script>
-  <script src="./js/user.js"></script>
+<script src="./js/bootstrap.bundle.min.js"></script>
+<script src="./renderer.js"></script>
+<script src="./js/common.js"></script>
+<script src="./js/user.js"></script>
+
 </html>
