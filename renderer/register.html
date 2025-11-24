@@ -23,11 +23,11 @@
   <body class="auth-page">
 
     <div class="d-flex flex-column align-items-center justify-content-center">
-        <div id="alert-register" class="d-none" style="width: 100%;">
-            <div class="callout callout-success rounded-0">
-                <p>Đăng ký thành công !!! Vui lòng đến trang đăng nhập</p>
-            </div>
-        </div>
+      <div id="alert-register" class="d-none" style="width: 100%;">
+          <div class="callout callout-success rounded-0">
+              <p>Đăng ký thành công !!! Vui lòng đến trang đăng nhập</p>
+          </div>
+      </div>
       <div class="register-box-body">
         <form action="javascript:void(0)" method="post" id="register-form">
           <div class="row mt-4">
@@ -38,23 +38,25 @@
                 <span class="help-block" id="username-error"></span>
               </div>
             </div>
-            <div class="col-12">
-              <div class="form-group has-feedback">
-                <label class="text-light" for>Mật khẩu</label>
-                <input type="password" class="form-control password-input-error" name="password" />
-                <span class="help-block" id="password-error"></span>
+            <div class="col-12 mb-3">
+             <label class="control-label text-white" for="password">Mật khẩu mới</label>
+              <div class="input-group">
+                  <input type="password" class="form-control password-input-error" id="password" name="password" placeholder="Mật khẩu mới">
+                  <div class="input-group-append">
+                      <span class="input-group-text"><i class="fa fa-eye toggle-password"></i></span>
+                  </div>
               </div>
+              <span class="help-block" id="password-error"></span>
             </div>
-            <div class="col-12">
-              <div class="form-group has-feedback">
-                <label class="text-light" for>Xác nhận mật khẩu</label>
-                <input
-                  type="password"
-                  class="form-control confirm_password-input-error"
-                  name="confirm_password"
-                />
-                <span class="help-block" id="confirm_password-error"></span>
+            <div class="col-12 mb-3">
+              <label class="control-label text-white" for="confirm_password">Mật khẩu xác nhận</label>
+              <div class="input-group">
+                  <input type="password" class="form-control confirm_password-input-error" id="confirm_password" name="confirm_password" placeholder="Mật khẩu xác nhận">
+                  <div class="input-group-append">
+                      <span class="input-group-text"><i class="fa fa-eye toggle-password"></i></span>
+                  </div>
               </div>
+              <span class="help-block" id="confirm_password-error"></span>
             </div>
             <div class="col-12">
               <div

@@ -431,3 +431,21 @@ background-size: 20px 20px;
 .color-error-validate {
     color: #ff838f !important;
 }
+
+.help-block {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+
+.password-wrapper {
+    position: relative;
+}
+
+.password-wrapper .toggle-password {
+    position: absolute;
+    right: 30px;
+    top: 42px;
+    cursor: pointer;
+    color: #666;
+}
