@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Danh sách quân nhân</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+      name="viewport"
+    />
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="./css/font-awesome.min.css" />
+    <!-- Theme style -->
+    <link rel="stylesheet" href="./css/AdminLTE.min.css" />
+
+    <link rel="stylesheet" href="./css/custom.css" />
+
+    <link rel="stylesheet" href="./css/unit.css" />
+  </head>
+  <body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+        <!-- Content Wrapper. Contains page content -->
+        <div>
+            <section class="content-header">
+                <h1 class="d-flex align-items-center gap-2"><img src="./img/Logo_QĐNDVN.png" width="35" height="35" alt=""> Tài khoản</h1>
+                <ol class="breadcrumb" style="gap: 10px;">
+                    <li><a href="index.html">Đơn vị</a></li>
+                    <li class="active"> Tài khoản</li>
+                </ol>
+            </section>
+
+            <section class="content">
+                <div class="row">
+                    <div class="col-12">
+                        <div id="alert-change-password-success" class="d-none" style="width: 100%;">
+                            <div class="callout callout-success rounded-0">
+                                <p>Thay đổi mật khẩu thành công</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="box box-primary p-2">
+                            <div class="box-header">
+                                <h3 class="box-title">Thay đổi mật khẩu</h3>
+                            </div>
+                            <!-- /.box-header -->
+
+                            <form action="javascript:void(0)" method="post" enctype="multipart/form-data" id="change-password-form">
+                                <div class="box-body">
+                                    <div class="row">
+                                        <!-- Name -->
+                                        <div class="col-sm-6">
+                                            <label class="control-label" for="password">Mật khẩu mới</label>
+                                            <div class="input-group">
+                                                <input type="password" class="form-control password-input-error" id="password" name="password" placeholder="Mật khẩu mới">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text"><i class="fa fa-eye toggle-password"></i></span>
+                                                </div>
+                                            </div>
+                                            <span class="help-block" id="password-error"></span>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label class="control-label" for="confirm_password">Mật khẩu xác nhận</label>
+                                            <div class="input-group">
+                                                <input type="password" class="form-control confirm_password-input-error" id="confirm_password" name="confirm_password" placeholder="Mật khẩu xác nhận">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text"><i class="fa fa-eye toggle-password"></i></span>
+                                                </div>
+                                            </div>
+                                            <span class="help-block" id="confirm_password-error"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <button type="submit" id="submit-change-password-form" class="btn btn-primary">Lưu</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- /.box-body -->
+                        </div>
+                        <!-- /.box -->
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./renderer.js"></script>
+    <script src="./js/common.js"></script>
+    <script src="./js/profile.js"></script>
+</body>
+</html>

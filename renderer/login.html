@@ -37,10 +37,14 @@
             <label class="text-light" for="">Tên đăng nhập</label>
             <input type="text" class="form-control" name="username" id="username" />
           </div>
-          <div class="form-group has-feedback">
-            <label class="text-light" for="">Mật khẩu</label>
-            <input type="password" class="form-control" name="password" id="password" />
-          </div>
+          <label class="control-label text-white" for="password">Mật khẩu</label>
+              <div class="input-group">
+                  <input type="password" class="form-control password-input-error" id="password" name="password">
+                  <div class="input-group-append">
+                      <span class="input-group-text"><i class="fa fa-eye toggle-password"></i></span>
+                  </div>
+              </div>
+              <span class="help-block" id="password-error"></span>
           <div
             class="d-flex flex-column justify-content-center align-items-center align-items-center mt-4"
           >

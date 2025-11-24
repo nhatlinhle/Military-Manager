@@ -8,10 +8,10 @@ $(document).ready(function() {
 
   rows.forEach(row => {
     $('#unit-list').append(`
-        <div style="background: #ffffff1f; border-radius: 10px;">
+        <div class="p-4" style="background: #ffffff1f;">
             <a href="javascript:void(0)" class="d-flex flex-column align-items-center hover-zoom p-2 unit-item" data-id="${row.id}">
                 <img src="${row.logo}" width="90" height="90" alt="">
-                <span class="text-info" style="font-size: 20px;">${row.name}</span>
+                <span class="text-info mt-2" style="font-size: 20px;">${row.name}</span>
             </a>
         </div>
     `);

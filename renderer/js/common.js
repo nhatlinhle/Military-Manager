@@ -61,9 +61,11 @@ function deleteData(fileName, id) {
 }
 
 function updateData(fileName, id, data) {
+  const dataDir = path.join(__dirname, 'data');
   const dataList = readData(fileName);
   const newData = dataList.map(item => item.id === id ? {...item, ...data} : item);
-  saveData(fileName, newData);
+  const filePath = path.join(dataDir, fileName);
+  fs.writeFileSync(filePath, JSON.stringify(newData, null, 2), 'utf-8');
 }
 
 function showError(field, message) {
@@ -97,3 +99,21 @@ function showError(field, message) {
     }
     return true;
   }
+
+document.querySelectorAll(".toggle-password").forEach(function (eyeIcon) {
+    eyeIcon.addEventListener("click", function () {
+
+        // Tìm input trong cùng input-group
+        const input = this.closest(".input-group").querySelector("input");
+
+        if (input.type === "password") {
+            input.type = "text";
+            this.classList.remove("fa-eye");
+            this.classList.add("fa-eye-slash");
+        } else {
+            input.type = "password";
+            this.classList.remove("fa-eye-slash");
+            this.classList.add("fa-eye");
+        }
+    });
+});
