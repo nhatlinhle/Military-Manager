@@ -449,3 +449,8 @@ background-size: 20px 20px;
     cursor: pointer;
     color: #666;
 }
+
+.icon-profile {
+    bottom: 20px;
+    right: 20px;
+}

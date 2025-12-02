@@ -11,8 +11,10 @@
   "build": {
     "appId": "com.military.app",
     "productName": "Quản lý quân nhân",
+    "icon": "renderer/img/Logo_QĐNDVN.png",
     "win": {
-      "target": "nsis"
+      "target": "portable",
+      "icon": "renderer/img/Logo_QĐNDVN.png"
     }
   },
   "keywords": [],
@@ -25,7 +27,7 @@
     "electron-reload": "^2.0.0-alpha.1"
   },
   "dependencies": {
-    "datatables": "^1.10.18",
+    "datatables.net-bs5": "^2.3.5",
     "jquery": "^3.7.1",
     "uuid": "^13.0.0"
   }

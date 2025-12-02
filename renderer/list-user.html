@@ -15,6 +15,8 @@
   <link rel="stylesheet" href="./css/AdminLTE.min.css" />
 
   <link rel="stylesheet" href="./css/custom.css" />
+
+  <link rel="stylesheet" href="./css/datepicker.min.css" />
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -41,9 +43,9 @@
                 <form action="">
                   <div class="row form-group">
                     <div class="col-6">
-                      <input type="text" class="form-control" id="search-input" placeholder="Nhập tên hoặc mã quân nhân để tìm kiếm">
+                      <input type="text" class="form-control" id="search-input" name="search-input" placeholder="Nhập tên hoặc mã quân nhân để tìm kiếm">
                     </div>
-
+                    
                     <div class="col-6">
                       <select name="rank" id="rank" class="form-control">
                         <option value="">Chọn cấp bậc</option>
@@ -66,6 +68,20 @@
                         <option value="17">Đại tướng</option>
                       </select>
                     </div>
+                  </div>
+
+                  <div class="row form-group">
+                    <div class="col-6">
+                      <input type="text" id="datepicker" class="form-control" name="year-entry" placeholder="Chọn năm nhập ngũ"/>
+                    </div>
+
+                    <div class="col-6">
+                      <input type="text" id="month-receive-rank" class="form-control" name="month-receive-rank" placeholder="Chọn tháng nhận cấp bậc">
+                    </div>
+                  </div>
+
+                  <div>
+                    <button type="button" class="btn btn-primary" id="search-button">Tìm kiếm</button>
                   </div>
                 </form>
               </div>
@@ -121,6 +137,7 @@
 <script src="./js/bootstrap.bundle.min.js"></script>
 <script src="./renderer.js"></script>
 <script src="./js/common.js"></script>
+<script src="./js/datepicker.min.js"></script>
 <script src="./js/user.js"></script>
 
 </html>
