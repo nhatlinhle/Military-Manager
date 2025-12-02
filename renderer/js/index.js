@@ -20,6 +20,6 @@ $(document).ready(function() {
   $(".unit-item").on("click", function() {
     const unitId = $(this).data("id");
     localStorage.setItem("unit-id", unitId) 
-    window.location.href = 'list-user.html?unit-id=' + unitId;
+    window.location.href = 'list-military.html?unit-id=' + unitId;
   })
 })

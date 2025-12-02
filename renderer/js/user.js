@@ -38,4 +38,8 @@ $(document).ready(function() {
     minViewMode: "months",
     language: "vi"
   });
+
+  $('#create-new-button').on('click', function() {
+    window.location.href = 'create-military.html?unit-id=' + unitId;
+  });
 })

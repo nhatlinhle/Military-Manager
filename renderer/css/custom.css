@@ -454,3 +454,52 @@ background-size: 20px 20px;
     bottom: 20px;
     right: 20px;
 }
+
+/* Form tạo mới quân nhân */
+#create-military-form .form-group {
+    margin-bottom: 15px;
+}
+
+#create-military-form .form-group .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+#create-military-form .form-group label {
+    margin-bottom: 0;
+    font-weight: normal;
+    padding-top: 7px;
+    text-align: left;
+}
+
+#create-military-form .form-group .col-4 {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+#create-military-form .form-group .col-8 {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+#create-military-form .tab-content {
+    max-height: 70vh;
+    overflow-y: auto;
+    padding: 20px;
+    background: #f9f9f9;
+}
+
+#create-military-form .nav-tabs {
+    border-bottom: 2px solid #ddd;
+    margin-bottom: 0;
+}
+
+#create-military-form .nav-tabs > li > a {
+    padding: 10px 20px;
+    font-weight: 500;
+}
+
+#create-military-form .nav-tabs > li.active > a {
+    background-color: #f9f9f9;
+    border-bottom-color: #f9f9f9;
+}
