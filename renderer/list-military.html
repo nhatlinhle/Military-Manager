@@ -26,10 +26,22 @@
         <h1 class="d-flex align-items-center gap-2"><img src="./img/Logo_QĐNDVN.png" width="35" height="35" alt="">Đơn
           vị: <span id="unit-name"></span></h1>
         <ol class="breadcrumb" style="gap: 10px;">
-          <li><a href="/admin/brand/list">Quản lý quân nhân</a></li>
-          <li class="active">Danh sách</li>
+          <li><a href="index.html">Đơn vị</a></li>
+          <li class="active">Danh sách quân nhân</li>
         </ol>
       </section>
+
+      <div id="alert-create-success" class="d-none" style="width: 100%;">
+        <div class="callout callout-success rounded-0"> 
+            <p class="d-flex justify-content-between">Thêm mới quân nhân thành công !!! <button type="button" class="btn btn-outline-danger btn-sm" id="close-alert-button">X</button></p>
+        </div>
+      </div>
+
+      <div id="alert-delete-success" class="d-none" style="width: 100%;">
+        <div class="callout callout-success rounded-0"> 
+            <p class="d-flex justify-content-between">Xóa quân nhân thành công !!! <button type="button" class="btn btn-outline-danger btn-sm" id="close-alert-button">X</button></p>
+        </div>
+      </div>
 
       <section class="content">
         <div class="row">
@@ -116,7 +128,7 @@
                               <th>Mã quân nhân</th>
                               <th>Tên quân nhân</th>
                               <th>Ngày tháng năm sinh</th>
-                              <th>Cấp bậc</th>
+                              <th>Nhập ngũ</th>
                               <th>Chức vụ</th>
                               <th>Hành động</th>
                             </tr>
@@ -138,12 +150,31 @@
       </section>
     </div>
   </div>
+
+  <div class="modal fade" id="delete-military-modal" tabindex="-1" role="dialog" aria-labelledby="delete-military-modal-label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="delete-military-modal-label">Xóa quân nhân</h5>
+        </div>
+        <div class="modal-body">
+          <p>Bạn có chắc chắn muốn xóa quân nhân này không?</p>
+          <form id="delete-military-form" action="javascript:void(0)" method="post">
+            <input type="hidden" id="delete-military-id" name="id">
+            <div class="d-flex justify-content-between">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+              <button type="submit" class="btn btn-danger">Xóa</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 
 <script src="./js/bootstrap.bundle.min.js"></script>
 <script src="./renderer.js"></script>
 <script src="./js/common.js"></script>
 <script src="./js/datepicker.min.js"></script>
-<script src="./js/user.js"></script>
-
+<script src="./js/military.js"></script>
 </html>

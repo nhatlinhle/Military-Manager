@@ -19,7 +19,7 @@ async function saveDataUnit(formData) {
   // Save JSON với đường dẫn tương đối
   const imagePathRel = `./images/${imageName}`;
   saveData('unit.json', {
-    id: uuidv4(), // uuidv4 is not defined, add uuid.js to renderer.js
+    id: uuidv4(),
     name: formData.get('name'),
     logo: imagePathRel,
   });

@@ -28,7 +28,7 @@
         <h1 class="d-flex align-items-center gap-2"><img src="./img/Logo_QĐNDVN.png" width="35" height="35" alt="">Đơn
           vị: <span id="unit-name"></span></h1>
         <ol class="breadcrumb" style="gap: 10px;">
-          <li><a href="/admin/brand/list">Quản lý quân nhân</a></li>
+          <li><a href="javascript:void(0)" class="back-button">Quản lý quân nhân</a></li>
           <li class="active">Danh sách</li>
         </ol>
       </section>
@@ -56,7 +56,7 @@
                               <div class="file-input">
                                   <input
                                       type="file"
-                                      name="logo"
+                                      name="avatar"
                                       id="single-image-file"
                                       class="file-input__input"
                                   />
@@ -98,7 +98,7 @@
                             <label for="full-name">Họ tên quân nhân</label>
                           </div>
                           <div class="col-8">
-                            <input type="text" class="form-control" id="full-name" name="full-name" placeholder="Nhập họ tên quân nhân">
+                            <input type="text" class="form-control" id="full-name" name="full_name" placeholder="Nhập họ tên quân nhân">
                           </div>
                         </div>
                       </div>
@@ -109,7 +109,7 @@
                             <label for="soldier-id">Số hiệu quân nhân</label>
                           </div>
                           <div class="col-8">
-                            <input type="text" class="form-control" id="soldier-id" name="soldier-id" placeholder="Nhập số hiệu quân nhân">
+                            <input type="text" class="form-control" id="soldier-id" name="soldier_id" placeholder="Nhập số hiệu quân nhân">
                           </div>
                         </div>
                       </div>
@@ -120,7 +120,7 @@
                             <label for="date-of-birth">Ngày tháng năm sinh</label>
                           </div>
                           <div class="col-8">
-                            <input type="text" class="form-control datepicker px-2" id="date-of-birth" name="date-of-birth" placeholder="Chọn ngày tháng năm sinh">
+                            <input type="text" class="form-control datepicker px-2" id="date-of-birth" name="date_of_birth" placeholder="Chọn ngày tháng năm sinh">
                           </div>
                         </div>
                       </div>
@@ -128,40 +128,15 @@
                       <div class="form-group">
                         <div class="row">
                           <div class="col-4">
-                            <label for="rank">Cấp bậc</label>
+                            <label>Cấp bậc</label>
                           </div>
                           <div class="col-8">
-                            <select class="form-control px-2" id="rank" name="rank">
-                              <option value="">Chọn cấp bậc</option>
-                              <option value="1">Binh nhất</option>
-                              <option value="2">Binh nhì</option>
-                              <option value="3">Hạ sĩ</option>
-                              <option value="4">Trung sĩ</option>
-                              <option value="5">Thượng sĩ</option>
-                              <option value="6">Thiếu úy</option>
-                              <option value="7">Trung úy</option>
-                              <option value="8">Thượng úy</option>
-                              <option value="9">Đại úy</option>
-                              <option value="10">Thiếu tá</option>
-                              <option value="11">Trung tá</option>
-                              <option value="12">Thượng tá</option>
-                              <option value="13">Đại tá</option>
-                              <option value="14">Thiếu tướng</option>
-                              <option value="15">Trung tướng</option>
-                              <option value="16">Thượng tướng</option>
-                              <option value="17">Đại tướng</option>
-                            </select>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="form-group">
-                        <div class="row">
-                          <div class="col-4">
-                            <label for="rank-date">Ngày tháng năm nhận cấp bậc</label>
-                          </div>
-                          <div class="col-8">
-                            <input type="text" class="form-control datepicker px-2" id="rank-date" name="rank-date" placeholder="Chọn ngày nhận cấp bậc">
+                            <div id="rank-rows-container">
+                              <!-- Các dòng cấp bậc sẽ được thêm vào đây -->
+                            </div>
+                            <button type="button" class="btn btn-sm btn-primary mt-2" id="add-rank-row">
+                              <i class="fa fa-plus"></i> Thêm cấp bậc
+                            </button>
                           </div>
                         </div>
                       </div>
@@ -172,7 +147,23 @@
                             <label for="id-card-date">Ngày cấp thẻ quân nhân</label>
                           </div>
                           <div class="col-8">
-                            <input type="text" class="form-control datepicker px-2" id="id-card-date" name="id-card-date" placeholder="Chọn ngày cấp thẻ quân nhân">
+                            <input type="text" class="form-control datepicker px-2" id="id-card-date" name="id_card_date" placeholder="Chọn ngày cấp thẻ quân nhân">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-4">
+                            <label>Quân hàm</label>
+                          </div>
+                          <div class="col-8">
+                            <div id="rank-name-rows-container">
+                              <!-- Các dòng quân hàm sẽ được thêm vào đây -->
+                            </div>
+                            <button type="button" class="btn btn-sm btn-primary mt-2" id="add-rank-name-row">
+                              <i class="fa fa-plus"></i> Thêm quân hàm
+                            </button>
                           </div>
                         </div>
                       </div>
@@ -194,7 +185,7 @@
                             <label for="position-date">Ngày nhận chức vụ</label>
                           </div>
                           <div class="col-8">
-                            <input type="text" class="form-control datepicker px-2" id="position-date" name="position-date" placeholder="Chọn ngày nhận chức vụ">
+                            <input type="text" class="form-control datepicker px-2" id="position-date" name="position_date" placeholder="Chọn ngày nhận chức vụ">
                           </div>
                         </div>
                       </div>
@@ -216,7 +207,7 @@
                             <label for="technical-level">Bậc kỹ thuật</label>
                           </div>
                           <div class="col-8">
-                            <input type="text" class="form-control" id="technical-level" name="technical-level" placeholder="Nhập bậc kỹ thuật">
+                            <input type="text" class="form-control" id="technical-level" name="technical_level" placeholder="Nhập bậc kỹ thuật">
                           </div>
                         </div>
                       </div>
@@ -227,7 +218,7 @@
                             <label for="enlistment-date">Nhập ngũ</label>
                           </div>
                           <div class="col-8">
-                            <input type="text" class="form-control datepicker px-2" id="enlistment-date" name="enlistment-date" placeholder="Chọn ngày nhập ngũ">
+                            <input type="text" class="form-control datepicker px-2" id="enlistment-date" name="enlistment_date" placeholder="Chọn ngày nhập ngũ">
                           </div>
                         </div>
                       </div>
@@ -238,7 +229,7 @@
                             <label for="discharge-date">Xuất ngũ</label>
                           </div>
                           <div class="col-8">
-                            <input type="text" class="form-control datepicker px-2" id="discharge-date" name="discharge-date" placeholder="Chọn ngày xuất ngũ">
+                            <input type="text" class="form-control datepicker px-2" id="discharge-date" name="discharge_date" placeholder="Chọn ngày xuất ngũ">
                           </div>
                         </div>
                       </div>
@@ -249,7 +240,7 @@
                             <label for="re-enlistment-date">Tái ngũ</label>
                           </div>
                           <div class="col-8">
-                            <input type="text" class="form-control datepicker px-2" id="re-enlistment-date" name="re-enlistment-date" placeholder="Chọn ngày tái ngũ">
+                            <input type="text" class="form-control datepicker px-2" id="re-enlistment-date" name="re_enlistment_date" placeholder="Chọn ngày tái ngũ">
                           </div>
                         </div>
                       </div>
@@ -260,7 +251,7 @@
                             <label for="transfer-qncn-date">Ngày chuyển QNCN</label>
                           </div>
                           <div class="col-8">
-                            <input type="text" class="form-control datepicker px-2" id="transfer-qncn-date" name="transfer-qncn-date" placeholder="Chọn ngày chuyển QNCN">
+                            <input type="text" class="form-control datepicker px-2" id="transfer-qncn-date" name="transfer_qncn_date" placeholder="Chọn ngày chuyển QNCN">
                           </div>
                         </div>
                       </div>
@@ -271,7 +262,7 @@
                             <label for="transfer-cnv-date">Ngày chuyển CNV</label>
                           </div>
                           <div class="col-8">
-                            <input type="text" class="form-control datepicker px-2" id="transfer-cnv-date" name="transfer-cnv-date" placeholder="Chọn ngày chuyển CNV">
+                            <input type="text" class="form-control datepicker px-2" id="transfer-cnv-date" name="transfer_cnv_date" placeholder="Chọn ngày chuyển CNV">
                           </div>
                         </div>
                       </div>
@@ -282,7 +273,7 @@
                             <label for="salary-group">Lương nhóm</label>
                           </div>
                           <div class="col-8">
-                            <input type="text" class="form-control" id="salary-group" name="salary-group" placeholder="Nhập lương nhóm">
+                            <input type="text" class="form-control" id="salary-group" name="salary_group" placeholder="Nhập lương nhóm">
                           </div>
                         </div>
                       </div>
@@ -293,7 +284,7 @@
                             <label for="salary-grade">Ngạch bậc</label>
                           </div>
                           <div class="col-8">
-                            <input type="text" class="form-control" id="salary-grade" name="salary-grade" placeholder="Nhập ngạch bậc">
+                            <input type="text" class="form-control" id="salary-grade" name="salary_grade" placeholder="Nhập ngạch bậc">
                           </div>
                         </div>
                       </div>
@@ -304,7 +295,7 @@
                             <label for="youth-union-date">Ngày vào Đoàn</label>
                           </div>
                           <div class="col-8">
-                            <input type="text" class="form-control datepicker px-2" id="youth-union-date" name="youth-union-date" placeholder="Chọn ngày vào Đoàn">
+                            <input type="text" class="form-control datepicker px-2" id="youth-union-date" name="youth_union_date" placeholder="Chọn ngày vào Đoàn">
                           </div>
                         </div>
                       </div>
@@ -315,7 +306,7 @@
                             <label for="party-date">Ngày vào Đảng</label>
                           </div>
                           <div class="col-8">
-                            <input type="text" class="form-control datepicker px-2" id="party-date" name="party-date" placeholder="Chọn ngày vào Đảng">
+                            <input type="text" class="form-control datepicker px-2" id="party-date" name="party_date" placeholder="Chọn ngày vào Đảng">
                           </div>
                         </div>
                       </div>
@@ -326,7 +317,7 @@
                             <label for="official-status">Chính thức</label>
                           </div>
                           <div class="col-8">
-                            <select class="form-control" id="official-status" name="official-status">
+                            <select class="form-control" id="official-status" name="official_status">
                               <option value="">Chọn trạng thái</option>
                               <option value="yes">Có</option>
                               <option value="no">Không</option>
@@ -341,7 +332,7 @@
                             <label for="family-background">Thành phần gia đình</label>
                           </div>
                           <div class="col-8">
-                            <input type="text" class="form-control" id="family-background" name="family-background" placeholder="Nhập thành phần gia đình">
+                            <input type="text" class="form-control" id="family-background" name="family_background" placeholder="Nhập thành phần gia đình">
                           </div>
                         </div>
                       </div>
@@ -352,7 +343,7 @@
                             <label for="personal-background">Thành phần bản thân</label>
                           </div>
                           <div class="col-8">
-                            <input type="text" class="form-control" id="personal-background" name="personal-background" placeholder="Nhập thành phần bản thân">
+                            <input type="text" class="form-control" id="personal-background" name="personal_background" placeholder="Nhập thành phần bản thân">
                           </div>
                         </div>
                       </div>
@@ -396,7 +387,7 @@
                             <label for="foreign-language">Ngoại ngữ</label>
                           </div>
                           <div class="col-8">
-                            <input type="text" class="form-control" id="foreign-language" name="foreign-language" placeholder="Nhập ngoại ngữ">
+                            <input type="text" class="form-control" id="foreign-language" name="foreign_language" placeholder="Nhập ngoại ngữ">
                           </div>
                         </div>
                       </div>
@@ -418,7 +409,7 @@
                             <label for="disability-rating">Hạng thương tật</label>
                           </div>
                           <div class="col-8">
-                            <input type="text" class="form-control" id="disability-rating" name="disability-rating" placeholder="Nhập hạng thương tật">
+                            <input type="text" class="form-control" id="disability-rating" name="disability_rating" placeholder="Nhập hạng thương tật">
                           </div>
                         </div>
                       </div>
@@ -426,10 +417,15 @@
                       <div class="form-group">
                         <div class="row">
                           <div class="col-4">
-                            <label for="commendations">Khen thưởng</label>
+                            <label>Khen thưởng</label>
                           </div>
                           <div class="col-8">
-                            <textarea class="form-control" id="commendations" name="commendations" rows="3" placeholder="Nhập thông tin khen thưởng"></textarea>
+                            <div id="commendations-rows-container">
+                              <!-- Các dòng khen thưởng sẽ được thêm vào đây -->
+                            </div>
+                            <button type="button" class="btn btn-sm btn-primary mt-2" id="add-commendations-row">
+                              <i class="fa fa-plus"></i> Thêm khen thưởng
+                            </button>
                           </div>
                         </div>
                       </div>
@@ -451,7 +447,7 @@
                             <label for="school-name">Tên trường</label>
                           </div>
                           <div class="col-8">
-                            <input type="text" class="form-control" id="school-name" name="school-name" placeholder="Nhập tên trường">
+                            <input type="text" class="form-control" id="school-name" name="school_name" placeholder="Nhập tên trường">
                           </div>
                         </div>
                       </div>
@@ -462,7 +458,7 @@
                             <label for="education-level">Cấp học</label>
                           </div>
                           <div class="col-8">
-                            <input type="text" class="form-control" id="education-level" name="education-level" placeholder="Nhập cấp học">
+                            <input type="text" class="form-control" id="education-level" name="education_level" placeholder="Nhập cấp học">
                           </div>
                         </div>
                       </div>
@@ -484,7 +480,7 @@
                             <label for="education-duration">Thời gian</label>
                           </div>
                           <div class="col-8">
-                            <input type="text" class="form-control" id="education-duration" name="education-duration" placeholder="Nhập thời gian học">
+                            <input type="text" class="form-control" id="education-duration" name="education_duration" placeholder="Nhập thời gian học">
                           </div>
                         </div>
                       </div>
@@ -495,7 +491,7 @@
                             <label for="place-of-origin">Nguyên quán</label>
                           </div>
                           <div class="col-8">
-                            <input type="text" class="form-control" id="place-of-origin" name="place-of-origin" placeholder="Nhập nguyên quán">
+                            <input type="text" class="form-control" id="place-of-origin" name="place_of_origin" placeholder="Nhập nguyên quán">
                           </div>
                         </div>
                       </div>
@@ -506,7 +502,7 @@
                             <label for="place-of-birth">Sinh quán</label>
                           </div>
                           <div class="col-8">
-                            <input type="text" class="form-control" id="place-of-birth" name="place-of-birth" placeholder="Nhập sinh quán">
+                            <input type="text" class="form-control" id="place-of-birth" name="place_of_birth" placeholder="Nhập sinh quán">
                           </div>
                         </div>
                       </div>
@@ -517,7 +513,7 @@
                             <label for="current-residence">Trú quán</label>
                           </div>
                           <div class="col-8">
-                            <input type="text" class="form-control" id="current-residence" name="current-residence" placeholder="Nhập trú quán">
+                            <input type="text" class="form-control" id="current-residence" name="current_residence" placeholder="Nhập trú quán">
                           </div>
                         </div>
                       </div>
@@ -528,7 +524,7 @@
                             <label for="emergency-contact">Khi cần báo tin cho ai, ở đâu?</label>
                           </div>
                           <div class="col-8">
-                            <textarea class="form-control" id="emergency-contact" name="emergency-contact" rows="3" placeholder="Nhập thông tin liên hệ khẩn cấp"></textarea>
+                            <textarea class="form-control" id="emergency-contact" name="emergency_contact" rows="3" placeholder="Nhập thông tin liên hệ khẩn cấp"></textarea>
                           </div>
                         </div>
                       </div>
@@ -539,7 +535,7 @@
                             <label for="father-name">Họ tên cha</label>
                           </div>
                           <div class="col-8">
-                            <input type="text" class="form-control" id="father-name" name="father-name" placeholder="Nhập họ tên cha">
+                            <input type="text" class="form-control" id="father-name" name="father_name" placeholder="Nhập họ tên cha">
                           </div>
                         </div>
                       </div>
@@ -550,7 +546,7 @@
                             <label for="mother-name">Họ tên mẹ</label>
                           </div>
                           <div class="col-8">
-                            <input type="text" class="form-control" id="mother-name" name="mother-name" placeholder="Nhập họ tên mẹ">
+                            <input type="text" class="form-control" id="mother-name" name="mother_name" placeholder="Nhập họ tên mẹ">
                           </div>
                         </div>
                       </div>
@@ -561,7 +557,7 @@
                             <label for="spouse-name">Họ tên vợ/chồng</label>
                           </div>
                           <div class="col-8">
-                            <input type="text" class="form-control" id="spouse-name" name="spouse-name" placeholder="Nhập họ tên vợ/chồng">
+                            <input type="text" class="form-control" id="spouse-name" name="spouse_name" placeholder="Nhập họ tên vợ/chồng">
                           </div>
                         </div>
                       </div>
@@ -572,7 +568,7 @@
                             <label for="children-count">Mấy con</label>
                           </div>
                           <div class="col-8">
-                            <input type="number" class="form-control" id="children-count" name="children-count" placeholder="Nhập số lượng con" min="0">
+                            <input type="number" class="form-control" id="children-count" name="children_count" placeholder="Nhập số lượng con" min="0">
                           </div>
                         </div>
                       </div>
@@ -589,7 +585,7 @@
                       </div>
                     </div>
                   <div class="d-flex justify-content-between mt-3">
-                    <button type="button" class="btn btn-primary" id="back-button">Quay lại danh sách</button>
+                    <button type="button" class="btn btn-primary back-button" id="back-button">Quay lại danh sách</button>
                     <button type="submit" class="btn btn-success" id="save-button">Lưu</button>
                   </div>
                 </form>
