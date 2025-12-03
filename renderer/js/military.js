@@ -43,6 +43,41 @@ $(document).ready(function() {
     window.location.href = 'create-military.html?unit-id=' + unitId;
   });
 
+  // Xử lý tìm kiếm
+  $('#search-button').on('click', function() {
+    filterMilitary();
+  });
+
+  // Tìm kiếm khi nhấn Enter trong ô tìm kiếm
+  // $('#search-input').on('keypress', function(e) {
+  //   if (e.which === 13) {
+  //     e.preventDefault();
+  //     filterMilitary();
+  //   }
+  // });
+
+  // Tìm kiếm real-time khi thay đổi (optional - có thể bỏ nếu muốn chỉ tìm khi click button)
+  // $('#search-input').on('input', function() {
+  //   filterMilitary();
+  // });
+
+  // Lọc khi thay đổi năm hoặc cấp bậc
+  // $('#datepicker').on('change', function() {
+  //   filterMilitary();
+  // });
+
+  // $('#rank').on('change', function() {
+  //   filterMilitary();
+  // });
+
+  // Xử lý nút làm mới (reset bộ lọc)
+  $('#reset-search-button').on('click', function() {
+    $('#search-input').val('');
+    $('#datepicker').val('');
+    $('#rank').val('');
+    loadMilitaryData();
+  });
+
   if (params.get("alert") == "create-success") {
     $("#alert-create-success").removeClass("d-none");
     params.delete("alert");
@@ -59,38 +94,121 @@ $(document).ready(function() {
     window.history.replaceState({}, "", newUrl);
   }
 
-  $('#close-alert-button').on('click', function() {
+  if (params.get("alert") == "update-success") {
+    $("#alert-update-success").removeClass("d-none");
+    params.delete("alert");
+
+    const newUrl = window.location.origin + window.location.pathname;
+    window.history.replaceState({}, "", newUrl);
+  }
+
+  $('.close-alert-button').on('click', function() {
     $("#alert-create-success").addClass("d-none");
     $("#alert-delete-success").addClass("d-none");
+    $("#alert-update-success").addClass("d-none");
   });
 
   function readMilitary() {
     return readData('military.json');
   }
 
-  const military = readMilitary();
+  // Lưu toàn bộ dữ liệu quân nhân của đơn vị
+  let allMilitaryRows = [];
+  
+  function loadMilitaryData() {
+    const military = readMilitary();
+    allMilitaryRows = military.filter(m => m.unit_id == unitId);
+    renderTable(allMilitaryRows);
+  }
 
-  const militaryRows = military.filter(m => m.unit_id == unitId);
+  // Hàm render bảng
+  function renderTable(militaryRows) {
+    const tbody = $('#users-table tbody');
+    tbody.empty();
+    
+    // Hiển thị số lượng kết quả
+    $('#result-count').text(`(${militaryRows.length} quân nhân)`);
+    
+    if (militaryRows.length === 0) {
+      tbody.append(`
+        <tr>
+          <td colspan="7" class="text-center">Không tìm thấy dữ liệu</td>
+        </tr>
+      `);
+      return;
+    }
 
-  militaryRows.forEach((row, index) => {
-    $('#users-table tbody').append(`
-      <tr>
-        <td>${index + 1}</td>
-        <td>${row.soldier_id}</td>
-        <td>${row.full_name}</td>
-        <td>${row.date_of_birth}</td>
-        <td>${row.enlistment_date}</td>
-        <td>${row.position}</td>
-        <td>
-          <button type="button" class="btn btn-primary btn-sm edit-military-button" data-bs-toggle="modal" data-bs-target="#edit-military-modal" data-id="${row.id}">
-            <i class="fa fa-edit"></i>
-          </button>
-          <button type="button" class="btn btn-danger btn-sm delete-military-button" data-bs-toggle="modal" data-bs-target="#delete-military-modal" data-id="${row.id}">
-            <i class="fa fa-trash"></i>
-          </button>
-        </td>
-      </tr>
-    `);
+    militaryRows.forEach((row, index) => {
+      tbody.append(`
+        <tr>
+          <td>${index + 1}</td>
+          <td>${row.soldier_id || ''}</td>
+          <td>${row.full_name || ''}</td>
+          <td>${row.date_of_birth || ''}</td>
+          <td>${row.enlistment_date || ''}</td>
+          <td>${row.position || ''}</td>
+          <td>
+            <button type="button" class="btn btn-primary btn-sm edit-military-button" data-id="${row.id}">
+              <i class="fa fa-edit"></i>
+            </button>
+            <button type="button" class="btn btn-danger btn-sm delete-military-button" data-bs-toggle="modal" data-bs-target="#delete-military-modal" data-id="${row.id}">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+      `);
+    });
+  }
+
+  // Hàm lọc dữ liệu
+  function filterMilitary() {
+    const searchText = $('#search-input').val().toLowerCase().trim();
+    const yearEntry = $('#datepicker').val();
+    const rankValue = $('#rank').val();
+
+    let filteredRows = allMilitaryRows.filter(row => {
+      // Lọc theo tên hoặc mã quân nhân
+      if (searchText) {
+        const fullName = (row.full_name || '').toLowerCase();
+        const soldierId = (row.soldier_id || '').toLowerCase();
+        if (!fullName.includes(searchText) && !soldierId.includes(searchText)) {
+          return false;
+        }
+      }
+
+      // Lọc theo năm nhập ngũ
+      if (yearEntry) {
+        const enlistmentDate = row.enlistment_date || '';
+        // enlistment_date format: dd-mm-yyyy
+        const year = enlistmentDate.split('-')[2];
+        if (year !== yearEntry) {
+          return false;
+        }
+      }
+
+      // Lọc theo cấp bậc
+      if (rankValue) {
+        const ranks = row.ranks || [];
+        // Kiểm tra xem có cấp bậc nào khớp không (lấy cấp bậc cao nhất)
+        const hasRank = ranks.some(rank => rank.rank === rankValue);
+        if (!hasRank) {
+          return false;
+        }
+      }
+
+      return true;
+    });
+
+    renderTable(filteredRows);
+  }
+
+  // Load dữ liệu ban đầu
+  loadMilitaryData();
+
+  // Xử lý nút edit
+  $(document).on('click', '.edit-military-button', function() {
+    const id = $(this).data('id');
+    window.location.href = 'edit-military.html?unit-id=' + unitId + '&id=' + id;
   });
 
   $('#delete-military-modal').on('show.bs.modal', function(event) {

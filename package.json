@@ -1,5 +1,5 @@
 {
-  "name": "qlqn",
+  "name": "hoso-quan-nhan",
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
@@ -10,11 +10,17 @@
   },
   "build": {
     "appId": "com.military.app",
-    "productName": "Quản lý quân nhân",
+    "productName": "Hồ sơ quân nhân",
     "icon": "renderer/img/Logo_QĐNDVN.png",
     "win": {
-      "target": "portable",
+      "target": "nsis",
       "icon": "renderer/img/Logo_QĐNDVN.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": false,
+      "createStartMenuShortcut": false
     }
   },
   "keywords": [],

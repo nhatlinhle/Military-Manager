@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chỉnh sửa quân nhân</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="./css/bootstrap.min.css" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="./css/font-awesome.min.css" />
+  <!-- Theme style -->
+  <link rel="stylesheet" href="./css/AdminLTE.min.css" />
+
+  <link rel="stylesheet" href="./css/custom.css" />
+
+  <link rel="stylesheet" href="./css/datepicker.min.css" />
+
+  <link rel="stylesheet" href="./css/military.css" />
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+  <div class="wrapper">
+    <div>
+      <section class="content-header">
+        <h1 class="d-flex align-items-center gap-2"><img src="./img/Logo_QĐNDVN.png" width="35" height="35" alt="">Đơn
+          vị: <span id="unit-name"></span></h1>
+        <ol class="breadcrumb" style="gap: 10px;">
+          <li><a href="javascript:void(0)" class="back-button">Quản lý quân nhân</a></li>
+          <li class="active">Chỉnh sửa</li>
+        </ol>
+      </section>
+
+      <section class="content">
+        <div class="row">
+          <div class="col-12">
+            <div class="box box-primary p-2">
+              <div class="box-header">
+                <h3 class="box-title">Chỉnh sửa quân nhân</h3>
+              </div>
+
+              <div class="box-body">
+                <form action="javascript:void(0)" method="post" id="edit-military-form">
+                  <!-- Tab content -->
+                  <div style="padding: 20px; background: #f9f9f9;">
+                    <!-- Thông tin tab -->
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-4">
+                            <label for="photo-upload">Tải ảnh lên</label>
+                          </div>
+                          <div class="col-8">
+                            <div class="form-group">
+                              <div class="file-input">
+                                  <input
+                                      type="file"
+                                      name="avatar"
+                                      id="single-image-file"
+                                      class="file-input__input"
+                                  />
+                                  <label class="file-input__label" for="single-image-file">
+                                      <svg
+                                          aria-hidden="true"
+                                          focusable="false"
+                                          data-prefix="fas"
+                                          data-icon="upload"
+                                          class="svg-inline--fa fa-upload fa-w-16"
+                                          role="img"
+                                          xmlns="http://www.w3.org/2000/svg"
+                                          viewBox="0 0 512 512"
+                                      >
+                                          <path
+                                              fill="currentColor"
+                                              d="M296 384h-80c-13.3 0-24-10.7-24-24V192h-87.7c-17.8 0-26.7-21.5-14.1-34.1L242.3 5.7c7.5-7.5 19.8-7.5 27.3 0l152.2 152.2c12.6 12.6 3.7 34.1-14.1 34.1H320v168c0 13.3-10.7 24-24 24zm216-8v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h136v8c0 30.9 25.1 56 56 56h80c30.9 0 56-25.1 56-56v-8h136c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z"
+                                          ></path>
+                                      </svg>
+                                      <span>Tải lên ảnh</span></label
+                                  >
+                              </div>
+                              <span class="help-block" id="logoFile-error"></span>
+                          </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div id="photo-preview" class="form-group">
+                        <div class="row">
+                          <div class="col-4"></div>
+                          <div class="col-8">
+                            <img id="preview-image" src="" alt="Preview" style="max-width: 300px; max-height: 300px; border: 1px solid #ddd; padding: 5px;">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-4">
+                            <label for="full-name">Họ tên quân nhân</label>
+                          </div>
+                          <div class="col-8">
+                            <input type="text" class="form-control" id="full-name" name="full_name" placeholder="Nhập họ tên quân nhân">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-4">
+                            <label for="soldier-id">Số hiệu quân nhân</label>
+                          </div>
+                          <div class="col-8">
+                            <input type="text" class="form-control" id="soldier-id" name="soldier_id" placeholder="Nhập số hiệu quân nhân">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-4">
+                            <label for="date-of-birth">Ngày tháng năm sinh</label>
+                          </div>
+                          <div class="col-8">
+                            <input type="text" class="form-control datepicker px-2" id="date-of-birth" name="date_of_birth" placeholder="Chọn ngày tháng năm sinh">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-4">
+                            <label>Cấp bậc</label>
+                          </div>
+                          <div class="col-8">
+                            <div id="rank-rows-container">
+                              <!-- Các dòng cấp bậc sẽ được thêm vào đây -->
+                            </div>
+                            <button type="button" class="btn btn-sm btn-primary mt-2" id="add-rank-row">
+                              <i class="fa fa-plus"></i> Thêm cấp bậc
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-4">
+                            <label for="id-card-date">Ngày cấp thẻ quân nhân</label>
+                          </div>
+                          <div class="col-8">
+                            <input type="text" class="form-control datepicker px-2" id="id-card-date" name="id_card_date" placeholder="Chọn ngày cấp thẻ quân nhân">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-4">
+                            <label>Quân hàm</label>
+                          </div>
+                          <div class="col-8">
+                            <div id="rank-name-rows-container">
+                              <!-- Các dòng quân hàm sẽ được thêm vào đây -->
+                            </div>
+                            <button type="button" class="btn btn-sm btn-primary mt-2" id="add-rank-name-row">
+                              <i class="fa fa-plus"></i> Thêm quân hàm
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-4">
+                            <label for="position">Chức vụ</label>
+                          </div>
+                          <div class="col-8">
+                            <input type="text" class="form-control" id="position" name="position" placeholder="Nhập chức vụ">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-4">
+                            <label for="position-date">Ngày nhận chức vụ</label>
+                          </div>
+                          <div class="col-8">
+                            <input type="text" class="form-control datepicker px-2" id="position-date" name="position_date" placeholder="Chọn ngày nhận chức vụ">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-4">
+                            <label for="cnqs">CNQS</label>
+                          </div>
+                          <div class="col-8">
+                            <input type="text" class="form-control" id="cnqs" name="cnqs" placeholder="Nhập CNQS">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-4">
+                            <label for="technical-level">Bậc kỹ thuật</label>
+                          </div>
+                          <div class="col-8">
+                            <input type="text" class="form-control" id="technical-level" name="technical_level" placeholder="Nhập bậc kỹ thuật">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-4">
+                            <label for="enlistment-date">Nhập ngũ</label>
+                          </div>
+                          <div class="col-8">
+                            <input type="text" class="form-control datepicker px-2" id="enlistment-date" name="enlistment_date" placeholder="Chọn ngày nhập ngũ">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-4">
+                            <label for="discharge-date">Xuất ngũ</label>
+                          </div>
+                          <div class="col-8">
+                            <input type="text" class="form-control datepicker px-2" id="discharge-date" name="discharge_date" placeholder="Chọn ngày xuất ngũ">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-4">
+                            <label for="re-enlistment-date">Tái ngũ</label>
+                          </div>
+                          <div class="col-8">
+                            <input type="text" class="form-control datepicker px-2" id="re-enlistment-date" name="re_enlistment_date" placeholder="Chọn ngày tái ngũ">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-4">
+                            <label for="transfer-qncn-date">Ngày chuyển QNCN</label>
+                          </div>
+                          <div class="col-8">
+                            <input type="text" class="form-control datepicker px-2" id="transfer-qncn-date" name="transfer_qncn_date" placeholder="Chọn ngày chuyển QNCN">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-4">
+                            <label for="transfer-cnv-date">Ngày chuyển CNV</label>
+                          </div>
+                          <div class="col-8">
+                            <input type="text" class="form-control datepicker px-2" id="transfer-cnv-date" name="transfer_cnv_date" placeholder="Chọn ngày chuyển CNV">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-4">
+                            <label for="salary-group">Lương nhóm</label>
+                          </div>
+                          <div class="col-8">
+                            <input type="text" class="form-control" id="salary-group" name="salary_group" placeholder="Nhập lương nhóm">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-4">
+                            <label for="salary-grade">Ngạch bậc</label>
+                          </div>
+                          <div class="col-8">
+                            <input type="text" class="form-control" id="salary-grade" name="salary_grade" placeholder="Nhập ngạch bậc">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-4">
+                            <label for="youth-union-date">Ngày vào Đoàn</label>
+                          </div>
+                          <div class="col-8">
+                            <input type="text" class="form-control datepicker px-2" id="youth-union-date" name="youth_union_date" placeholder="Chọn ngày vào Đoàn">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-4">
+                            <label for="party-date">Ngày vào Đảng</label>
+                          </div>
+                          <div class="col-8">
+                            <input type="text" class="form-control datepicker px-2" id="party-date" name="party_date" placeholder="Chọn ngày vào Đảng">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-4">
+                            <label for="official-status">Chính thức</label>
+                          </div>
+                          <div class="col-8">
+                            <select class="form-control" id="official-status" name="official_status">
+                              <option value="">Chọn trạng thái</option>
+                              <option value="yes">Có</option>
+                              <option value="no">Không</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-4">
+                            <label for="family-background">Thành phần gia đình</label>
+                          </div>
+                          <div class="col-8">
+                            <input type="text" class="form-control" id="family-background" name="family_background" placeholder="Nhập thành phần gia đình">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-4">
+                            <label for="personal-background">Thành phần bản thân</label>
+                          </div>
+                          <div class="col-8">
+                            <input type="text" class="form-control" id="personal-background" name="personal_background" placeholder="Nhập thành phần bản thân">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-4">
+                            <label for="ethnicity">Dân tộc</label>
+                          </div>
+                          <div class="col-8">
+                            <input type="text" class="form-control" id="ethnicity" name="ethnicity" placeholder="Nhập dân tộc">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-4">
+                            <label for="religion">Tôn giáo</label>
+                          </div>
+                          <div class="col-8">
+                            <input type="text" class="form-control" id="religion" name="religion" placeholder="Nhập tôn giáo">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-4">
+                            <label for="education">Văn hoá</label>
+                          </div>
+                          <div class="col-8">
+                            <input type="text" class="form-control" id="education" name="education" placeholder="Nhập trình độ văn hoá">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-4">
+                            <label for="foreign-language">Ngoại ngữ</label>
+                          </div>
+                          <div class="col-8">
+                            <input type="text" class="form-control" id="foreign-language" name="foreign_language" placeholder="Nhập ngoại ngữ">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-4">
+                            <label for="health">Sức khoẻ</label>
+                          </div>
+                          <div class="col-8">
+                            <input type="text" class="form-control" id="health" name="health" placeholder="Nhập tình trạng sức khoẻ">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-4">
+                            <label for="disability-rating">Hạng thương tật</label>
+                          </div>
+                          <div class="col-8">
+                            <input type="text" class="form-control" id="disability-rating" name="disability_rating" placeholder="Nhập hạng thương tật">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-4">
+                            <label>Khen thưởng</label>
+                          </div>
+                          <div class="col-8">
+                            <div id="commendations-rows-container">
+                              <!-- Các dòng khen thưởng sẽ được thêm vào đây -->
+                            </div>
+                            <button type="button" class="btn btn-sm btn-primary mt-2" id="add-commendations-row">
+                              <i class="fa fa-plus"></i> Thêm khen thưởng
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-4">
+                            <label for="discipline">Kỷ luật</label>
+                          </div>
+                          <div class="col-8">
+                            <textarea class="form-control" id="discipline" name="discipline" rows="3" placeholder="Nhập thông tin kỷ luật"></textarea>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-4">
+                            <label for="school-name">Tên trường</label>
+                          </div>
+                          <div class="col-8">
+                            <input type="text" class="form-control" id="school-name" name="school_name" placeholder="Nhập tên trường">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-4">
+                            <label for="education-level">Cấp học</label>
+                          </div>
+                          <div class="col-8">
+                            <input type="text" class="form-control" id="education-level" name="education_level" placeholder="Nhập cấp học">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-4">
+                            <label for="major">Ngành học</label>
+                          </div>
+                          <div class="col-8">
+                            <input type="text" class="form-control" id="major" name="major" placeholder="Nhập ngành học">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-4">
+                            <label for="education-duration">Thời gian</label>
+                          </div>
+                          <div class="col-8">
+                            <input type="text" class="form-control" id="education-duration" name="education_duration" placeholder="Nhập thời gian học">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-4">
+                            <label for="place-of-origin">Nguyên quán</label>
+                          </div>
+                          <div class="col-8">
+                            <input type="text" class="form-control" id="place-of-origin" name="place_of_origin" placeholder="Nhập nguyên quán">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-4">
+                            <label for="place-of-birth">Sinh quán</label>
+                          </div>
+                          <div class="col-8">
+                            <input type="text" class="form-control" id="place-of-birth" name="place_of_birth" placeholder="Nhập sinh quán">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-4">
+                            <label for="current-residence">Trú quán</label>
+                          </div>
+                          <div class="col-8">
+                            <input type="text" class="form-control" id="current-residence" name="current_residence" placeholder="Nhập trú quán">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-4">
+                            <label for="emergency-contact">Khi cần báo tin cho ai, ở đâu?</label>
+                          </div>
+                          <div class="col-8">
+                            <textarea class="form-control" id="emergency-contact" name="emergency_contact" rows="3" placeholder="Nhập thông tin liên hệ khẩn cấp"></textarea>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-4">
+                            <label for="father-name">Họ tên cha</label>
+                          </div>
+                          <div class="col-8">
+                            <input type="text" class="form-control" id="father-name" name="father_name" placeholder="Nhập họ tên cha">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-4">
+                            <label for="mother-name">Họ tên mẹ</label>
+                          </div>
+                          <div class="col-8">
+                            <input type="text" class="form-control" id="mother-name" name="mother_name" placeholder="Nhập họ tên mẹ">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-4">
+                            <label for="spouse-name">Họ tên vợ/chồng</label>
+                          </div>
+                          <div class="col-8">
+                            <input type="text" class="form-control" id="spouse-name" name="spouse_name" placeholder="Nhập họ tên vợ/chồng">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-4">
+                            <label for="children-count">Mấy con</label>
+                          </div>
+                          <div class="col-8">
+                            <input type="number" class="form-control" id="children-count" name="children_count" placeholder="Nhập số lượng con" min="0">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-4">
+                            <label for="notes">Ghi chú</label>
+                          </div>
+                          <div class="col-8">
+                            <textarea class="form-control" id="notes" name="notes" rows="4" placeholder="Nhập ghi chú"></textarea>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  <div class="d-flex justify-content-between mt-3">
+                    <button type="button" class="btn btn-primary back-button" id="back-button">Quay lại danh sách</button>
+                    <button type="submit" class="btn btn-success" id="save-button">Cập nhật</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</body>
+
+<script src="./js/bootstrap.bundle.min.js"></script>
+<script src="./renderer.js"></script>
+<script src="./js/common.js"></script>
+<script src="./js/datepicker.min.js"></script>
+<script src="./js/edit-military.js"></script>
+</html>
+

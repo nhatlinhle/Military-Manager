@@ -1,5 +1,5 @@
 async function saveDataUnit(formData) {
-  const imageDir = path.join(__dirname, 'images');
+  const imageDir = getImagesDir();
   if (!fs.existsSync(imageDir)) {
     fs.mkdirSync(imageDir, { recursive: true });
   }
@@ -86,9 +86,10 @@ $(document).ready(function() {
   const rows = readUnit();
 
   rows.forEach(row => {
+    const imagePath = resolveImagePath(row.logo);
     $('#unit-table tbody').append(`
       <tr>
-        <td><img src="${row.logo}" alt="Image" style="height: 40px; width: 40px;"></td>
+        <td><img src="${imagePath}" alt="Image" style="height: 40px; width: 40px;"></td>
         <td>${row.name}</td>
         <td>
           <button type="button" class="btn btn-danger btn-sm delete-unit-button" data-bs-toggle="modal" data-bs-target="#delete-unit-modal" data-id="${row.id}">

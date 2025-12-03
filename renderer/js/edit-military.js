@@ -13,6 +13,13 @@ $(document).ready(function() {
 
   const params = new URLSearchParams(window.location.search);
   const unitId = params.get("unit-id");
+  const militaryId = params.get("id");
+
+  if (!militaryId) {
+    alert('Không tìm thấy ID quân nhân!');
+    window.location.href = 'list-military.html?unit-id=' + unitId;
+    return;
+  }
 
   // Lấy thông tin đơn vị
   function readUnit() {
@@ -22,6 +29,20 @@ $(document).ready(function() {
   const unit = rows.find(u => u.id === unitId);
   if (unit) {
     $('#unit-name').text(unit.name);
+  }
+
+  // Đọc dữ liệu quân nhân
+  function readMilitary() {
+    return readData('military.json');
+  }
+
+  const militaryList = readMilitary();
+  const military = militaryList.find(m => m.id === militaryId);
+
+  if (!military) {
+    alert('Không tìm thấy thông tin quân nhân!');
+    window.location.href = 'list-military.html?unit-id=' + unitId;
+    return;
   }
 
   // Khởi tạo datepicker cho tất cả các trường ngày tháng
@@ -48,11 +69,11 @@ $(document).ready(function() {
   let commendationsRowCounter = 0;
 
   // Hàm tạo dòng cấp bậc
-  function createRankRow() {
+  function createRankRow(rankData = null) {
     const rowId = `rank-row-${rankRowCounter++}`;
     const rowHtml = `
       <div class="rank-row mb-2" data-row-id="${rowId}">
-        <div class="row gap-2 align-items-center">
+        <div class="row gap-2 mx-0 align-items-center">
           <div class="col-5 px-0">
             <select class="form-control px-2 rank-select" name="rank[]">
               <option value="">Chọn cấp bậc</option>
@@ -88,15 +109,21 @@ $(document).ready(function() {
     `;
     const $row = $(rowHtml);
     $('#rank-rows-container').append($row);
+    
+    if (rankData) {
+      $row.find('.rank-select').val(rankData.rank);
+      $row.find('.rank-date').val(rankData.rank_date);
+    }
+    
     initDatepicker($row.find('.rank-date'));
   }
 
   // Hàm tạo dòng quân hàm
-  function createRankNameRow() {
+  function createRankNameRow(rankNameData = null) {
     const rowId = `rank-name-row-${rankNameRowCounter++}`;
     const rowHtml = `
       <div class="rank-name-row mb-2" data-row-id="${rowId}">
-        <div class="row gap-2 align-items-center">
+        <div class="row gap-2 mx-0 align-items-center">
           <div class="col-5 px-0">
             <input type="text" class="form-control rank-name-input" name="rank_name[]" placeholder="Nhập quân hàm">
           </div>
@@ -113,15 +140,21 @@ $(document).ready(function() {
     `;
     const $row = $(rowHtml);
     $('#rank-name-rows-container').append($row);
+    
+    if (rankNameData) {
+      $row.find('.rank-name-input').val(rankNameData.rank_name);
+      $row.find('.rank-name-date').val(rankNameData.rank_name_date);
+    }
+    
     initDatepicker($row.find('.rank-name-date'));
   }
 
   // Hàm tạo dòng khen thưởng
-  function createCommendationsRow() {
+  function createCommendationsRow(commendationData = null) {
     const rowId = `commendations-row-${commendationsRowCounter++}`;
     const rowHtml = `
       <div class="commendations-row mb-2" data-row-id="${rowId}">
-        <div class="row gap-2 align-items-center">
+        <div class="row gap-2 mx-0 align-items-center">
           <div class="col-5 px-0">
             <input type="text" class="form-control commendations-input" name="commendations[]" placeholder="Nhập thông tin khen thưởng">
           </div>
@@ -138,8 +171,98 @@ $(document).ready(function() {
     `;
     const $row = $(rowHtml);
     $('#commendations-rows-container').append($row);
+    
+    if (commendationData) {
+      $row.find('.commendations-input').val(commendationData.commendation);
+      $row.find('.commendations-date').val(commendationData.commendation_date);
+    }
+    
     initDatepicker($row.find('.commendations-date'));
   }
+
+  // Load dữ liệu vào form
+  function loadMilitaryData() {
+    // Load các trường đơn giản
+    $('#full-name').val(military.full_name || '');
+    $('#soldier-id').val(military.soldier_id || '');
+    $('#date-of-birth').val(military.date_of_birth || '');
+    $('#id-card-date').val(military.id_card_date || '');
+    $('#position').val(military.position || '');
+    $('#position-date').val(military.position_date || '');
+    $('#cnqs').val(military.cnqs || '');
+    $('#technical-level').val(military.technical_level || '');
+    $('#enlistment-date').val(military.enlistment_date || '');
+    $('#discharge-date').val(military.discharge_date || '');
+    $('#re-enlistment-date').val(military.re_enlistment_date || '');
+    $('#transfer-qncn-date').val(military.transfer_qncn_date || '');
+    $('#transfer-cnv-date').val(military.transfer_cnv_date || '');
+    $('#salary-group').val(military.salary_group || '');
+    $('#salary-grade').val(military.salary_grade || '');
+    $('#youth-union-date').val(military.youth_union_date || '');
+    $('#party-date').val(military.party_date || '');
+    $('#official-status').val(military.official_status || '');
+    $('#family-background').val(military.family_background || '');
+    $('#personal-background').val(military.personal_background || '');
+    $('#ethnicity').val(military.ethnicity || '');
+    $('#religion').val(military.religion || '');
+    $('#education').val(military.education || '');
+    $('#foreign-language').val(military.foreign_language || '');
+    $('#health').val(military.health || '');
+    $('#disability-rating').val(military.disability_rating || '');
+    $('#discipline').val(military.discipline || '');
+    $('#school-name').val(military.school_name || '');
+    $('#education-level').val(military.education_level || '');
+    $('#major').val(military.major || '');
+    $('#education-duration').val(military.education_duration || '');
+    $('#place-of-origin').val(military.place_of_origin || '');
+    $('#place-of-birth').val(military.place_of_birth || '');
+    $('#current-residence').val(military.current_residence || '');
+    $('#emergency-contact').val(military.emergency_contact || '');
+    $('#father-name').val(military.father_name || '');
+    $('#mother-name').val(military.mother_name || '');
+    $('#spouse-name').val(military.spouse_name || '');
+    $('#children-count').val(military.children_count || '');
+    $('#notes').val(military.notes || '');
+
+    // Load avatar nếu có
+    if (military.avatar) {
+      const avatarPath = resolveImagePath(military.avatar);
+      $('#preview-image').attr('src', avatarPath);
+      $('#photo-preview').show();
+    } else {
+      $('#photo-preview').hide();
+    }
+
+    // Load ranks
+    if (military.ranks && military.ranks.length > 0) {
+      military.ranks.forEach(rank => {
+        createRankRow(rank);
+      });
+    } else {
+      createRankRow();
+    }
+
+    // Load rank_names
+    if (military.rank_names && military.rank_names.length > 0) {
+      military.rank_names.forEach(rankName => {
+        createRankNameRow(rankName);
+      });
+    } else {
+      createRankNameRow();
+    }
+
+    // Load commendations
+    if (military.commendations && military.commendations.length > 0) {
+      military.commendations.forEach(commendation => {
+        createCommendationsRow(commendation);
+      });
+    } else {
+      createCommendationsRow();
+    }
+  }
+
+  // Load dữ liệu khi trang được tải
+  loadMilitaryData();
 
   // Xử lý nút thêm dòng
   $('#add-rank-row').on('click', function() {
@@ -159,11 +282,6 @@ $(document).ready(function() {
     $(this).closest('.rank-row, .rank-name-row, .commendations-row').remove();
   });
 
-  // Khởi tạo một dòng mặc định cho mỗi trường
-  createRankRow();
-  createRankNameRow();
-  createCommendationsRow();
-
   // Xử lý preview ảnh
   $('#single-image-file').on('change', function(e) {
     const file = e.target.files[0];
@@ -175,7 +293,14 @@ $(document).ready(function() {
       };
       reader.readAsDataURL(file);
     } else {
-      $('#photo-preview').hide();
+      // Nếu không chọn file mới, giữ nguyên ảnh cũ
+      if (military.avatar) {
+        const avatarPath = resolveImagePath(military.avatar);
+        $('#preview-image').attr('src', avatarPath);
+        $('#photo-preview').show();
+      } else {
+        $('#photo-preview').hide();
+      }
     }
   });
 
@@ -185,7 +310,7 @@ $(document).ready(function() {
   });
 
   // Xử lý submit form
-  $('#create-military-form').on('submit', async function(e) {
+  $('#edit-military-form').on('submit', async function(e) {
     e.preventDefault();
 
     const formData = new FormData(this);
@@ -246,9 +371,11 @@ $(document).ready(function() {
       data.commendations = commendations;
     }
 
-    data.id = uuidv4();
+    // Giữ nguyên ID và unit_id
+    data.id = militaryId;
     data.unit_id = unitId;
 
+    // Xử lý avatar: nếu có file mới thì lưu, không thì giữ nguyên
     const photoFile = $('#single-image-file')[0].files[0];
     if (photoFile) {
       async function savePhoto() {
@@ -267,18 +394,22 @@ $(document).ready(function() {
         data.avatar = `./images/avatar/${imageName}`;
       }
       await savePhoto();
+    } else {
+      // Giữ nguyên avatar cũ nếu không có file mới
+      data.avatar = military.avatar || '';
     }
 
-    await saveDataMilitary(data);
+    await updateDataMilitary(data);
 
-    window.location.href = 'list-military.html?unit-id=' + unitId + '&alert=create-success';
+    window.location.href = 'list-military.html?unit-id=' + unitId + '&alert=update-success';
   });
 
-  async function saveDataMilitary(data) {
-    saveData('military.json', data);
+  async function updateDataMilitary(data) {
+    updateData('military.json', militaryId, data);
   }
 
   $('#back-button').on('click', function() {
     window.location.href = 'list-military.html?unit-id=' + unitId;
   });
 });
+
