@@ -44,10 +44,9 @@ $(document).ready(function() {
 
   // Counter để tạo ID duy nhất cho mỗi dòng
   let rankRowCounter = 0;
-  let rankNameRowCounter = 0;
   let commendationsRowCounter = 0;
 
-  // Hàm tạo dòng cấp bậc
+  // Hàm tạo dòng quân hàm
   function createRankRow() {
     const rowId = `rank-row-${rankRowCounter++}`;
     const rowHtml = `
@@ -55,7 +54,7 @@ $(document).ready(function() {
         <div class="row gap-2 align-items-center">
           <div class="col-5 px-0">
             <select class="form-control px-2 rank-select" name="rank[]">
-              <option value="">Chọn cấp bậc</option>
+              <option value="">Chọn quân hàm</option>
               <option value="1">Binh nhất</option>
               <option value="2">Binh nhì</option>
               <option value="3">Hạ sĩ</option>
@@ -76,7 +75,7 @@ $(document).ready(function() {
             </select>
           </div>
           <div class="col-5 px-0">
-            <input type="text" class="form-control datepicker px-2 rank-date" name="rank_date[]" placeholder="Chọn ngày nhận cấp bậc">
+            <input type="text" class="form-control datepicker px-2 rank-date" name="rank_date[]" placeholder="Chọn ngày nhận quân hàm">
           </div>
           <div class="col-1 px-0">
             <button type="button" class="btn btn-sm btn-danger remove-row">
@@ -89,31 +88,6 @@ $(document).ready(function() {
     const $row = $(rowHtml);
     $('#rank-rows-container').append($row);
     initDatepicker($row.find('.rank-date'));
-  }
-
-  // Hàm tạo dòng quân hàm
-  function createRankNameRow() {
-    const rowId = `rank-name-row-${rankNameRowCounter++}`;
-    const rowHtml = `
-      <div class="rank-name-row mb-2" data-row-id="${rowId}">
-        <div class="row gap-2 align-items-center">
-          <div class="col-5 px-0">
-            <input type="text" class="form-control rank-name-input" name="rank_name[]" placeholder="Nhập quân hàm">
-          </div>
-          <div class="col-5 px-0">
-            <input type="text" class="form-control datepicker px-2 rank-name-date" name="rank_name_date[]" placeholder="Chọn ngày">
-          </div>
-          <div class="col-1 px-0">
-            <button type="button" class="btn btn-sm btn-danger remove-row">
-              <i class="fa fa-trash"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-    `;
-    const $row = $(rowHtml);
-    $('#rank-name-rows-container').append($row);
-    initDatepicker($row.find('.rank-name-date'));
   }
 
   // Hàm tạo dòng khen thưởng
@@ -146,22 +120,17 @@ $(document).ready(function() {
     createRankRow();
   });
 
-  $('#add-rank-name-row').on('click', function() {
-    createRankNameRow();
-  });
-
   $('#add-commendations-row').on('click', function() {
     createCommendationsRow();
   });
 
   // Xử lý nút xóa dòng (sử dụng event delegation)
   $(document).on('click', '.remove-row', function() {
-    $(this).closest('.rank-row, .rank-name-row, .commendations-row').remove();
+    $(this).closest('.rank-row, .commendations-row').remove();
   });
 
   // Khởi tạo một dòng mặc định cho mỗi trường
   createRankRow();
-  createRankNameRow();
   createCommendationsRow();
 
   // Xử lý preview ảnh
@@ -198,7 +167,7 @@ $(document).ready(function() {
       }
     }
 
-    // Xử lý các trường dạng mảng: cấp bậc
+    // Xử lý các trường dạng mảng: quân hàm
     const ranks = [];
     $('.rank-row').each(function() {
       const rank = $(this).find('.rank-select').val();
@@ -212,22 +181,6 @@ $(document).ready(function() {
     });
     if (ranks.length > 0) {
       data.ranks = ranks;
-    }
-
-    // Xử lý các trường dạng mảng: quân hàm
-    const rankNames = [];
-    $('.rank-name-row').each(function() {
-      const rankName = $(this).find('.rank-name-input').val();
-      const rankNameDate = $(this).find('.rank-name-date').val();
-      if (rankName || rankNameDate) {
-        rankNames.push({
-          rank_name: rankName || '',
-          rank_name_date: rankNameDate || ''
-        });
-      }
-    });
-    if (rankNames.length > 0) {
-      data.rank_names = rankNames;
     }
 
     // Xử lý các trường dạng mảng: khen thưởng

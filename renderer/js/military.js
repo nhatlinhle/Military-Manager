@@ -224,4 +224,140 @@ $(document).ready(function() {
     deleteData('military.json', id);
     window.location.href = 'list-military.html?unit-id=' + unitId + '&alert=delete-success';
   });
+
+  // Xử lý xuất file JSON
+  $('#export-json-button').on('click', function() {
+    try {
+      // Đọc dữ liệu từ military.json
+      const militaryData = readMilitary();
+      
+      // Chuyển đổi thành JSON string với format đẹp
+      const jsonString = JSON.stringify(militaryData, null, 2);
+      
+      // Tạo blob từ JSON string
+      const blob = new Blob([jsonString], { type: 'application/json' });
+      
+      // Tạo URL từ blob
+      const url = URL.createObjectURL(blob);
+      
+      // Tạo thẻ a để download
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'military.json';
+      document.body.appendChild(a);
+      a.click();
+      
+      // Cleanup
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      
+      alert('Xuất file JSON thành công!');
+    } catch (error) {
+      console.error('Lỗi khi xuất file JSON:', error);
+      alert('Có lỗi xảy ra khi xuất file JSON: ' + error.message);
+    }
+  });
+
+  // Xử lý nhập file JSON
+  $('#import-json-button').on('click', function() {
+    // Trigger click vào input file ẩn
+    $('#import-json-file').click();
+  });
+
+  $('#import-json-file').on('change', function(e) {
+    const file = e.target.files[0];
+    if (!file) {
+      return;
+    }
+
+    // Kiểm tra định dạng file
+    if (!file.name.endsWith('.json')) {
+      alert('Vui lòng chọn file JSON!');
+      $(this).val('');
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      try {
+        // Parse JSON từ file
+        const importedData = JSON.parse(e.target.result);
+        
+        // Đảm bảo importedData là mảng
+        let importedArray = [];
+        if (Array.isArray(importedData)) {
+          importedArray = importedData;
+        } else if (typeof importedData === 'object' && importedData !== null) {
+          importedArray = [importedData];
+        } else {
+          throw new Error('Dữ liệu không hợp lệ');
+        }
+
+        // Đọc dữ liệu hiện tại
+        const currentData = readMilitary();
+        
+        // Lấy danh sách soldier_id hiện có
+        const existingSoldierIds = new Set(
+          currentData.map(item => item.soldier_id).filter(id => id)
+        );
+        
+        // Lọc và merge dữ liệu mới (không trùng soldier_id)
+        let addedCount = 0;
+        let skippedCount = 0;
+        const newData = [...currentData];
+        
+        importedArray.forEach(item => {
+          // Thay thế unit_id bằng unit_id từ URL parameter
+          item.unit_id = unitId;
+          
+          // Kiểm tra soldier_id
+          if (!item.soldier_id) {
+            skippedCount++;
+            return;
+          }
+          
+          // Kiểm tra trùng soldier_id
+          if (existingSoldierIds.has(item.soldier_id)) {
+            skippedCount++;
+            return;
+          }
+          
+          // Thêm vào danh sách
+          newData.push(item);
+          existingSoldierIds.add(item.soldier_id);
+          addedCount++;
+        });
+        
+        // Lưu dữ liệu mới
+        const dataDir = getDataDir();
+        const filePath = window.path.join(dataDir, 'military.json');
+        window.fs.writeFileSync(filePath, JSON.stringify(newData, null, 2), 'utf-8');
+        
+        // Thông báo kết quả
+        let message = `Nhập file JSON thành công!\n`;
+        message += `- Đã thêm: ${addedCount} quân nhân\n`;
+        if (skippedCount > 0) {
+          message += `- Đã bỏ qua: ${skippedCount} quân nhân (trùng soldier_id hoặc thiếu soldier_id)`;
+        }
+        alert(message);
+        
+        // Reload dữ liệu
+        loadMilitaryData();
+        
+        // Reset input file
+        $('#import-json-file').val('');
+      } catch (error) {
+        console.error('Lỗi khi nhập file JSON:', error);
+        alert('Có lỗi xảy ra khi nhập file JSON: ' + error.message);
+        $('#import-json-file').val('');
+      }
+    };
+    
+    reader.onerror = function() {
+      alert('Có lỗi xảy ra khi đọc file!');
+      $('#import-json-file').val('');
+    };
+    
+    reader.readAsText(file);
+  });
 })
